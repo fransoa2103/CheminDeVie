@@ -1,13 +1,13 @@
 
 <?php
     require_once '../Class/User.php';
-    echo '</br>'.date('d/m/Y à H:i:s').'</br>';
+    echo 'Bonjour nous sommes le '.date('d/m/Y à H:i:s').'</br>';
     
     $new = new User($_POST);
-    echo '</br>'.$new->noms[0].' - ';
-    echo $new->noms[1].' - ';
-    echo $new->noms[2].' - ';
-    echo $new->dateNaissance[0].'</br>';
+    echo '</br>Voici le résultat de votre chemin de vie, '.$_POST['prenoms'].' '.$_POST['nomPere'].'.';
+    echo '</br>Le nom de jeune fille de votre mère est, '.$_POST['nomMere'].'.';
+    echo '</br>Vous êtes né(e) le: '.$new->dateNaissance[2].'-'.$new->dateNaissance[1].'-'.$new->dateNaissance[0].'</br>';
+    echo '</br>Si les informations ci-dessus sont inexactes, ce calcul est bien evidemment faussé!';
 
     echo '<h3>PIERRE DE BASE >> '.$new->result_pierreDeBase.'</h3>';
 

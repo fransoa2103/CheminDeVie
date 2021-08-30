@@ -29,7 +29,7 @@
             <input required type="text" name="nomMere" id="nomMere" size="25" placeholder="en minuscule"></br></br>
 
             <label for="dateNaissance">Date de naissance</label></br>
-            <input type="date" id="dateNaissance" name="dateNaissance">                        
+            <input required type="date" id="dateNaissance" name="dateNaissance">                        
 
             <input type="submit" value="valider">
         </form>    
