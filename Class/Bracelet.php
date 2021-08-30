@@ -5,6 +5,7 @@ class Bracelet extends BaseDeCalcul {
     public function __construct($data){
 
         $this->dateNaissance    = htmlspecialchars($data['dateNaissance']);
+        $this->dateNaissance    = explode("-",$this->dateNaissance);
         
         $this->nomPere          = htmlspecialchars($data['nomPere']);
         $this->nomPere          = mb_strtolower($this->nomPere);
@@ -44,44 +45,32 @@ class Bracelet extends BaseDeCalcul {
         $this->pierreDePersonnalite();
         $this->pierreDexpression();
         $this->pierreDeTouche();
+        $this->pierreDeVie();
     }
 
-             // ------------------------------------------------------------------ \\
-            // ------------------------------ FUNCTIONS --------------------------- \\
-           // ---------------------------------------------------------------------- \\
-          // 1. PIERRE DE VOEUX == Somme de la première voyelle des prénoms et noms.  \\
-         // 2. PIERRE DE BASE   == Somme de la première lettre  des prénoms et noms.   \\
-        // 3. PIERRE DE SOMMET  == Somme de la dernière lettres des prénoms et noms.    \\
-
+        
         public function pierreDeVoeuxBaseSommet(){
             
+            
+            // 1. PIERRE DE VOEUX == Somme de la première voyelle des prénoms et noms.
+            // 2. PIERRE DE BASE   // Somme de la première lettre  des prénoms et noms.
+            // 3. PIERRE DE SOMMET // Somme de la dernière lettres des prénoms et noms.
             foreach($this->nomsTableau as $index){
                 
                 $pierreDeVoeux_premiereVoyelle = true;
-
-                for( $i=0; $i<strlen($index); $i++){
+                foreach($this->nomSplit as $nom){
                     foreach(BaseDeCalcul::$voyelles as $voyelle){
-                        if ($index[$i] == utf8_decode($voyelle[0])){
-                            if($pierreDeVoeux_premiereVoyelle){
-
+                        if ($nom == utf8_decode($voyelle[0]) && $pierreDeVoeux_premiereVoyelle){
                                 $this->resultat_pierreDeVoeux += $voyelle[1];
                                 $pierreDeVoeux_premiereVoyelle = false;
                                 break;
-
-                            }
                         }
-                    }  
-                    if (!$pierreDeVoeux_premiereVoyelle)
-                    {   
-                        break;
                     }
                 }
-            
-                // 2. PIERRE DE BASE   // Somme de la première lettre  des prénoms et noms.
+                
                 $premiereLettre = 0;
-                // 3. PIERRE DE SOMMET // Somme de la dernière lettres des prénoms et noms.
                 $derniereLettre = strlen($index)-1;
-    
+                
                 foreach(BaseDeCalcul::$voyelles as $voyelle)
                 {
                     if ($index[$premiereLettre] == utf8_decode($voyelle[0])){
@@ -102,23 +91,22 @@ class Bracelet extends BaseDeCalcul {
                 }
             }
             
+            $this->siResultatSuperieur33($this->resultat_pierreDeVoeux);
+            $this->resultat_pierreDeVoeux = $this->resultat_nouveauCalcul;
+
             $this->valeur_pierreDeBase    = $this->resultat_pierreDeBase;
-
             $this->valeur_pierreDeSommet  = $this->resultat_pierreDeSommet;
-
             
             $this->siResultatSuperieur33($this->resultat_pierreDeBase);
             $this->resultat_pierreDeBase = $this->resultat_nouveauCalcul;
-           
+            
             $this->siResultatSuperieur33($this->resultat_pierreDeSommet);
             $this->resultat_pierreDeSommet = $this->resultat_nouveauCalcul;
-           
-            $this->siResultatSuperieur33($this->resultat_pierreDeVoeux);
-            $this->resultat_pierreDeVoeux = $this->resultat_nouveauCalcul;
+            
         }
         
     // 
-    // PIERRE D'APPEL // Somme des voyelles des noms et prÃ©noms.
+    // PIERRE D'APPEL // Somme des voyelles des noms et prénoms.
     // 
     public function pierreDappel()
     {
@@ -180,6 +168,17 @@ class Bracelet extends BaseDeCalcul {
                                         + $this->valeur_pierreDexpression;
         $this->siResultatSuperieur33($this->resultat_pierreDeTouche);
         $this->resultat_pierreDeTouche = $this->resultat_nouveauCalcul;
+    }
+
+    // 
+    // PIERRE DE CHEMIN DE VIE est la somme de la date de naissance
+    // 
+    public function pierreDeVie(){
+        foreach($this->dateNaissance as $date){
+            $this->resultat_pierreDeVie += floatval($date); // floatval retourne la valeur decimale ex: 1969+03+21 
+        }
+        $this->siResultatSuperieur33($this->resultat_pierreDeVie);
+        $this->resultat_pierreDeVie = $this->resultat_nouveauCalcul;
     }
 
     // 
