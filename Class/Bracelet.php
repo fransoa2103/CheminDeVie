@@ -4,31 +4,9 @@ class Bracelet extends BaseDeCalcul {
 
     public function __construct($data){
 
+
         $this->dateNaissance    = htmlspecialchars($data['dateNaissance']);
         $this->dateNaissance    = explode("-",$this->dateNaissance);
-        
-        $this->nomPere          = htmlspecialchars($data['nomPere']);
-        $this->nomPere          = mb_strtolower($this->nomPere);
-        $this->nomPere          = explode(" ",$this->nomPere);
-        
-        $this->nomMere          = htmlspecialchars($data['nomMere']);
-        $this->nomMere          = mb_strtolower($this->nomMere);
-        $this->nomMere          = explode(" ",$this->nomMere);
-        
-        $this->nomsTableau      = htmlspecialchars($data['prenoms']);
-        $this->nomsTableau      = mb_strtolower($this->nomsTableau);
-        $this->nomsTableau      = explode(" ",$this->nomsTableau);
-        $this->nomsTableau      = array_merge($this->nomsTableau, $this->nomPere, $this->nomMere);
-    
-        $this->nomSplit         = implode("",$this->nomsTableau);
-        $this->nomSplit         = htmlspecialchars($this->nomSplit);
-        $this->nomSplit         = mb_strtolower($this->nomSplit);
-        $this->nomSplit         = utf8_decode($this->nomSplit);
-        $this->nomSplit         = str_split($this->nomSplit);
-
-        // var_dump($this->nomsTableau);
-        // var_dump($this->nomSplit);
-        // var_dump($this->dateNaissance);
     
         $this->resultat_pierreDeBase            = 0;
         $this->resultat_pierreDeSommet          = 0;
@@ -40,108 +18,88 @@ class Bracelet extends BaseDeCalcul {
         $this->resultat_pierreDeVoeux           = 0;
         $this->resultat_nouveauCalcul           = 0;
 
-        $this->pierreDeVoeuxBaseSommet();
-        $this->pierreDappel();
-        $this->pierreDePersonnalite();
+        $this->pierreDappelVoeuxBasePersonnaliteSommet();
         $this->pierreDexpression();
         $this->pierreDeTouche();
         $this->pierreDeVie();
     }
-
+    
+    public function pierreDappelVoeuxBasePersonnaliteSommet() {
         
-        public function pierreDeVoeuxBaseSommet(){
-            
-            
-            // 1. PIERRE DE VOEUX == Somme de la première voyelle des prénoms et noms.
-            // 2. PIERRE DE BASE   // Somme de la première lettre  des prénoms et noms.
-            // 3. PIERRE DE SOMMET // Somme de la dernière lettres des prénoms et noms.
-            foreach($this->nomsTableau as $index){
-                
-                $pierreDeVoeux_premiereVoyelle = true;
-                foreach($this->nomSplit as $nom){
-                    foreach(BaseDeCalcul::$voyelles as $voyelle){
-                        if ($nom == utf8_decode($voyelle[0]) && $pierreDeVoeux_premiereVoyelle){
-                                $this->resultat_pierreDeVoeux += $voyelle[1];
-                                $pierreDeVoeux_premiereVoyelle = false;
-                                break;
+        $tab_nomPrenoms = [];
+        $tab_nomPrenoms = $_POST['pre_noms'];
+        $prenoms = str_split($tab_nomPrenoms[0]);
+        $new = "";
+        foreach($prenoms as $lettre_prenom){
+            if ($lettre_prenom != " "){
+                $new = $new.$lettre_prenom;
+            }
+            else
+            {
+                array_push($tab_nomPrenoms, $new);
+                $new ="";
+            }
+        }
+        array_push($tab_nomPrenoms, $new);
+        array_shift($tab_nomPrenoms);
+
+        foreach ($tab_nomPrenoms as $nom){
+            $nom = htmlspecialchars($nom);
+            $nom = mb_strtolower($nom); 
+            $nom = utf8_decode($nom);
+
+            $calcul_pierreDeVoeux = true;
+
+            for ($i = 0; $i<strlen($nom) ; $i++){
+                foreach(BaseDeCalcul::$voyelles as $voyelle){
+                    if ($nom[$i] == utf8_decode($voyelle[0])){
+                        $this->resultat_pierreDappel += $voyelle[1];
+                        if($calcul_pierreDeVoeux){
+                            $this->resultat_pierreDeVoeux += $voyelle[1];
+                            $calcul_pierreDeVoeux = false;
+                        }
+                        if($i == 0){
+                            $this->resultat_pierreDeBase += $voyelle[1];
+                        }
+                        if($i == (strlen($nom)-1)){
+                            $this->resultat_pierreDeSommet += $voyelle[1];
                         }
                     }
                 }
                 
-                $premiereLettre = 0;
-                $derniereLettre = strlen($index)-1;
-                
-                foreach(BaseDeCalcul::$voyelles as $voyelle)
-                {
-                    if ($index[$premiereLettre] == utf8_decode($voyelle[0])){
-                        $this->resultat_pierreDeBase += $voyelle[1];
-                    }
-                    if ($index[$derniereLettre] == utf8_decode($voyelle[0])){
-                        $this->resultat_pierreDeSommet += $voyelle[1];
-                    }
-                }
-                foreach(BaseDeCalcul::$consonnes as $consonne)
-                {
-                    if ($index[$premiereLettre] == utf8_decode($consonne[0])){
-                        $this->resultat_pierreDeBase += $consonne[1];
-                    }
-                    if ($index[$derniereLettre] == utf8_decode($consonne[0])){
-                        $this->resultat_pierreDeSommet += $consonne[1];
+                foreach(BaseDeCalcul::$consonnes as $consonne){
+                    if ($nom[$i] == utf8_decode($consonne[0])){
+                        $this->resultat_pierreDePersonnalite += $consonne[1];
+                        if($i == 0){
+                            $this->resultat_pierreDeBase += $consonne[1];
+                        }
+                        if($i == (strlen($nom)-1)){
+                            $this->resultat_pierreDeSommet += $consonne[1];
+                        }
                     }
                 }
             }
-            
-            $this->siResultatSuperieur33($this->resultat_pierreDeVoeux);
-            $this->resultat_pierreDeVoeux = $this->resultat_nouveauCalcul;
+        }
 
-            $this->valeur_pierreDeBase    = $this->resultat_pierreDeBase;
-            $this->valeur_pierreDeSommet  = $this->resultat_pierreDeSommet;
-            
-            $this->siResultatSuperieur33($this->resultat_pierreDeBase);
-            $this->resultat_pierreDeBase = $this->resultat_nouveauCalcul;
-            
-            $this->siResultatSuperieur33($this->resultat_pierreDeSommet);
-            $this->resultat_pierreDeSommet = $this->resultat_nouveauCalcul;
-            
-        }
-        
-    // 
-    // PIERRE D'APPEL // Somme des voyelles des noms et prénoms.
-    // 
-    public function pierreDappel()
-    {
-        foreach($this->nomSplit as $nom){
-            foreach(BaseDeCalcul::$voyelles as $voyelle){
-                if ($nom == utf8_decode($voyelle[0])){
-                    $this->resultat_pierreDappel += $voyelle[1];
-                }
-            }
-        }
         $this->valeur_pierreDappel = $this->resultat_pierreDappel;
-
         $this->siResultatSuperieur33($this->resultat_pierreDappel);
         $this->resultat_pierreDappel = $this->resultat_nouveauCalcul;
 
-    }       
-
-    // PIERRE DE PERSONNALITE
-    // Somme des consonnes des noms et prénoms.
-    
-    public function pierreDePersonnalite()
-    {
-        foreach($this->nomSplit as $nom){
-            foreach(BaseDeCalcul::$consonnes as $consonne){
-                if ($nom == utf8_decode($consonne[0])){
-                    $this->resultat_pierreDePersonnalite += $consonne[1];
-                }
-            }
-        }
-        
         $this->valeur_pierreDePersonnalite = $this->resultat_pierreDePersonnalite;
-
         $this->siResultatSuperieur33($this->resultat_pierreDePersonnalite);
         $this->resultat_pierreDePersonnalite = $this->resultat_nouveauCalcul;
-
+        
+        $this->valeur_pierreDeVoeux = $this->resultat_pierreDeVoeux;
+        $this->siResultatSuperieur33($this->resultat_pierreDeVoeux);
+        $this->resultat_pierreDeVoeux = $this->resultat_nouveauCalcul;
+        
+        $this->valeur_pierreDeBase = $this->resultat_pierreDeBase;
+        $this->siResultatSuperieur33($this->resultat_pierreDeBase);
+        $this->resultat_pierreDeBase = $this->resultat_nouveauCalcul;
+        
+        $this->valeur_pierreDeSommet = $this->resultat_pierreDeSommet;
+        $this->siResultatSuperieur33($this->resultat_pierreDeSommet);
+        $this->resultat_pierreDeSommet = $this->resultat_nouveauCalcul;
     }
   
     // PIERRE D EXPRESSION

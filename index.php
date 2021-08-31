@@ -18,15 +18,15 @@
         <title>Calcul CDV en PHP/POO</title>
     </head>
     <body>
-        <form id="userNew" action="./src/mainPage.php" method="POST">
+        <form id="userNew" action="./src/page_resultats.php" method="POST">
             <label for="prenoms"><b>Saisissez TOUS vos prénoms</label></br>
-            <input required type="text" name="prenoms" id="prenoms" size="75" placeholder="en minuscule"></br></br>
+            <input required type="text" name="pre_noms[0]" id="prenoms" size="75" placeholder="en minuscule"></br></br>
 
             <label for="nomPere"><b>Nom de naissance de votre père</label></br>
-            <input required type="text" name="nomPere" id="nomPere" size="25" placeholder="en minuscule"></br></br>
+            <input required type="text" name="pre_noms[1]" id="nomPere" size="25" placeholder="en minuscule"></br></br>
             
             <label for="nomMere"><b>Nom de jeune fille de votre mère</label></br>
-            <input required type="text" name="nomMere" id="nomMere" size="25" placeholder="en minuscule"></br></br>
+            <input required type="text" name="pre_noms[2]" id="nomMere" size="25" placeholder="en minuscule"></br></br>
 
             <label for="dateNaissance">Date de naissance</label></br>
             <input required type="date" id="dateNaissance" name="dateNaissance">                        
