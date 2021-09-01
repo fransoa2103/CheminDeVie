@@ -4,6 +4,11 @@ class Bracelet extends BaseDeCalcul {
 
     public function __construct($data){
 
+        $this->nombreChampsFormulaire = count($data)+1; // si un jour le nombre de champs de saisie évolue
+        $this->controleDuFormulaire($data);
+        
+        $this->tab_nomsPrenoms  = $data['pre_noms'];
+        $this->fusionDesNomsPrenoms();
 
         $this->dateNaissance    = htmlspecialchars($data['dateNaissance']);
         $this->dateNaissance    = explode("-",$this->dateNaissance);
@@ -23,27 +28,56 @@ class Bracelet extends BaseDeCalcul {
         $this->pierreDeTouche();
         $this->pierreDeVie();
     }
+
     
-    public function pierreDappelVoeuxBasePersonnaliteSommet() {
+    // ici la fonction controle la validité des 3 champs du formulaire
+    // si un caractère non alphabétique est trouvé, une erreur = 1 est retournée
+    // this function control validity for the 3 values of the form
+    // if one no-alphabetic character is find, then error return = 1
+    private function controleDuFormulaire($data_form){ 
+
+        for ($i = 0; $i<$this->nombreChampsFormulaire; $i++){
+            $data_form['pre_noms'][$i] = utf8_decode($data_form['pre_noms'][$i]);
+            if (preg_match_all('/[\/\\\&~"#{([`_^@)°%=}+$£¤¨%µ*§!:;.,?0-9\'\]]/',$data_form['pre_noms'][$i])){ 
+                header('location:http://localhost/CheminDeVie/index.php?error=1&message=Attention, Vous ne devez saisir que des caractères de l\'alphabet');
+                exit();
+            }
+        }
+
+    }
+
+    // fonction fusion des champs noms et prenoms, ainsi 5 calculs de pierres se font en 1 seule boucle
+    // merge function fields name + firstname then 5 stone calcul are done in one single loop
+
+    private function fusionDesNomsPrenoms(){
+        $prenoms = str_split($this->tab_nomsPrenoms[0]);
+        $new = ""; // temp var
         
-        $tab_nomPrenoms = [];
-        $tab_nomPrenoms = $_POST['pre_noms'];
-        $prenoms = str_split($tab_nomPrenoms[0]);
-        $new = "";
-        foreach($prenoms as $lettre_prenom){
+        // 1> je scinde les prénoms $tab_nomsPrenoms[0]
+        // 2> puis ils sont fusionnés avec le nom du pere et le nom de la mere
+        // 1> split $tab_nomsPrenoms[0]
+        // 2> firstnames are merge with dad & mother name  
+        // 3> result only tab_nomsPrenoms 
+
+        foreach($prenoms as $lettre_prenom){ 
             if ($lettre_prenom != " "){
                 $new = $new.$lettre_prenom;
             }
             else
             {
-                array_push($tab_nomPrenoms, $new);
+                array_push($this->tab_nomsPrenoms, $new);
                 $new ="";
             }
         }
-        array_push($tab_nomPrenoms, $new);
-        array_shift($tab_nomPrenoms);
+        array_push($this->tab_nomsPrenoms, $new); // ajoute le dernier champs trouvé à la fin de la boucle
+        array_shift($this->tab_nomsPrenoms); // efface le champs des prenoms pour éviter un doublon et une erreur
+    }
 
-        foreach ($tab_nomPrenoms as $nom){
+
+
+    public function pierreDappelVoeuxBasePersonnaliteSommet() {
+        
+        foreach ($this->tab_nomsPrenoms as $nom){
             $nom = htmlspecialchars($nom);
             $nom = mb_strtolower($nom); 
             $nom = utf8_decode($nom);

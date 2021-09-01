@@ -1,11 +1,11 @@
 <?php
     if (isset($_GET['error'])){
         if($_GET['error'] == 1){
-            echo '<h1 style="color: red;">'.$_GET['message'].'</h1>';
+            echo '<h3 style="color: red;">'.$_GET['message'].'</h3>';
         }
         else
         {
-            echo '<h1 style="color: green;">'.$_GET['message'].'</h1>';
+            echo '<h3 style="color: green;">'.$_GET['message'].'</h3>';
         }
     }
 ?>
