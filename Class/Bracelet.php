@@ -2,31 +2,36 @@
 require_once 'BaseDeCalcul.php';
 class Bracelet extends BaseDeCalcul {
 
-    public function __construct($data){
+    public function __construct($data_formulaire){
 
-        $this->nombreChampsFormulaire = count($data)+1; // si un jour le nombre de champs de saisie évolue
-        $this->controleDuFormulaire($data);
-        
-        $this->tab_nomsPrenoms  = $data['pre_noms'];
-        $this->fusionDesNomsPrenoms();
-
-        $this->dateNaissance    = htmlspecialchars($data['dateNaissance']);
+        // ATTRIBUTS
+        $this->tab_nomsPrenoms  = $data_formulaire;
+        $this->prenoms          = htmlspecialchars($data_formulaire['prenoms']);
+        $this->nomPere          = htmlspecialchars($data_formulaire['nomPere']);
+        $this->nomMere          = htmlspecialchars($data_formulaire['nomMere']);
+        $this->dateNaissance    = htmlspecialchars($data_formulaire['dateNaissance']);
         $this->dateNaissance    = explode("-",$this->dateNaissance);
-    
-        $this->resultat_pierreDeBase            = 0;
-        $this->resultat_pierreDeSommet          = 0;
-        $this->resultat_pierreDeVie             = 0;
-        $this->resultat_pierreDappel            = 0;
-        $this->resultat_pierreDePersonnalite    = 0;
-        $this->resultat_pierreDexpression       = 0;
-        $this->resultat_pierreDeTouche          = 0;
-        $this->resultat_pierreDeVoeux           = 0;
-        $this->resultat_nouveauCalcul           = 0;
+        
+        $this->nombreChampsFormulaire = count($data_formulaire)+1; // si un jour le nombre de champs de saisie évolue
 
+        $this->pierreDeBase         = 0;
+        $this->pierreDeSommet       = 1;
+        $this->pierreDeVie          = 2;
+        $this->pierreDappel         = 3;
+        $this->pierreDePersonnalite = 4;
+        $this->pierreDexpression    = 5;
+        $this->pierreDeTouche       = 6;
+        $this->pierreDeVoeux        = 7;
+        
+        // METHODES
+        $this->fusionDesNomsPrenoms();
+        $this->controleDuFormulaire();
         $this->pierreDappelVoeuxBasePersonnaliteSommet();
         $this->pierreDexpression();
         $this->pierreDeTouche();
         $this->pierreDeVie();
+        $this->siResultatSuperieur33();
+        
     }
 
     
@@ -34,160 +39,150 @@ class Bracelet extends BaseDeCalcul {
     // si un caractère non alphabétique est trouvé, une erreur = 1 est retournée
     // this function control validity for the 3 values of the form
     // if one no-alphabetic character is find, then error return = 1
-    private function controleDuFormulaire($data_form){ 
-
-        for ($i = 0; $i<$this->nombreChampsFormulaire; $i++){
-            $data_form['pre_noms'][$i] = utf8_decode($data_form['pre_noms'][$i]);
-            if (preg_match_all('/[\/\\\&~"#{([`_^@)°%=}+$£¤¨%µ*§!:;.,?0-9\'\]]/',$data_form['pre_noms'][$i])){ 
+    private function controleDuFormulaire(){ 
+        
+        foreach($this->tab_nomsPrenoms as $nomPrenom){
+            $nomPrenom = utf8_decode($nomPrenom);
+            if ((preg_match_all('/[\/\\\&~"#{([`_^@)°%=}+$£¤¨%µ*§!:;.,?0-9\'\]]/',$nomPrenom))){ 
                 header('location:http://localhost/CheminDeVie/index.php?error=1&message=Attention, Vous ne devez saisir que des caractères de l\'alphabet');
                 exit();
             }
         }
-
     }
 
     // fonction fusion des champs noms et prenoms, ainsi 5 calculs de pierres se font en 1 seule boucle
     // merge function fields name + firstname then 5 stone calcul are done in one single loop
 
     private function fusionDesNomsPrenoms(){
-        $prenoms = str_split($this->tab_nomsPrenoms[0]);
-        $new = ""; // temp var
         
-        // 1> je scinde les prénoms $tab_nomsPrenoms[0]
-        // 2> puis ils sont fusionnés avec le nom du pere et le nom de la mere
-        // 1> split $tab_nomsPrenoms[0]
-        // 2> firstnames are merge with dad & mother name  
-        // 3> result only tab_nomsPrenoms 
+        // efface le champs date de naissance // delete birthday
+        array_pop($this->tab_nomsPrenoms);
 
+        // $prenoms contiendra tous le champs des prénoms saisis sous forme de longue chaine
+        // pour pouvoir naviguer lettre par lettre
+        $prenoms = str_split($this->tab_nomsPrenoms['prenoms']);
+        // crée variable tampon pour fabriquer le nouveau tableau 
+        // create new val buffer to build new tab
+        $prenoms_tampon = "";
+        
+        // 1> je scinde les prénoms $tab_nomsPrenoms['prenoms']
+        // 2> puis ils sont fusionnés avec le nom du pere et le nom de la mere en un seul tableau
+        // 1> split $tab_nomsPrenoms['prenoms']
+        // 2> firstnames are merge with dad & mother name, result all in one 
+        
         foreach($prenoms as $lettre_prenom){ 
             if ($lettre_prenom != " "){
-                $new = $new.$lettre_prenom;
+                $prenoms_tampon = $prenoms_tampon.$lettre_prenom;
             }
             else
             {
-                array_push($this->tab_nomsPrenoms, $new);
-                $new ="";
+                array_push($this->tab_nomsPrenoms,$prenoms_tampon);
+                $prenoms_tampon ="";
             }
         }
-        array_push($this->tab_nomsPrenoms, $new); // ajoute le dernier champs trouvé à la fin de la boucle
+        array_push($this->tab_nomsPrenoms, $prenoms_tampon); // ajoute le dernier champs trouvé à la fin de la boucle
         array_shift($this->tab_nomsPrenoms); // efface le champs des prenoms pour éviter un doublon et une erreur
     }
 
 
 
-    public function pierreDappelVoeuxBasePersonnaliteSommet() {
+    private function pierreDappelVoeuxBasePersonnaliteSommet() {
         
-        foreach ($this->tab_nomsPrenoms as $nom){
-            $nom = htmlspecialchars($nom);
-            $nom = mb_strtolower($nom); 
-            $nom = utf8_decode($nom);
+        foreach ($this->tab_nomsPrenoms as $nomPrenom){
+            
+            // $nomPrenom = nom ou prenom du formulaire
+            $nomPrenom = mb_strtolower($nomPrenom); 
+            $nomPrenom = utf8_decode($nomPrenom);
 
-            $calcul_pierreDeVoeux = true;
+            // pierre de voeux ne compte que la 1ère voyelle trouvée
+            $pierreDeVoeux_premiereVoyelle = true;
 
-            for ($i = 0; $i<strlen($nom) ; $i++){
+            // boucle sur toutes les lettres des noms et prenoms
+            for ($i = 0; $i<strlen($nomPrenom) ; $i++){
+                // boucle sur toutes les VOYELLES des lettres des noms et prenoms
                 foreach(BaseDeCalcul::$voyelles as $voyelle){
-                    if ($nom[$i] == utf8_decode($voyelle[0])){
-                        $this->resultat_pierreDappel += $voyelle[1];
-                        if($calcul_pierreDeVoeux){
-                            $this->resultat_pierreDeVoeux += $voyelle[1];
-                            $calcul_pierreDeVoeux = false;
+                    if ($nomPrenom[$i] == utf8_decode($voyelle[0])){
+                        // PIERRE d APPEL
+                        BaseDecalcul::$formules[$this->pierreDappel][1] += $voyelle[1];
+                        // PIERRE de VOEUX
+                        if($pierreDeVoeux_premiereVoyelle){
+                            BaseDecalcul::$formules[$this->pierreDeVoeux][1] += $voyelle[1];
+                            $pierreDeVoeux_premiereVoyelle = false;
                         }
+                        // PIERRE de BASE
                         if($i == 0){
-                            $this->resultat_pierreDeBase += $voyelle[1];
+                            BaseDecalcul::$formules[$this->pierreDeBase][1] += $voyelle[1];
                         }
-                        if($i == (strlen($nom)-1)){
-                            $this->resultat_pierreDeSommet += $voyelle[1];
+                        // PIERRE de SOMMET
+                        if($i == (strlen($nomPrenom)-1)){
+                            BaseDecalcul::$formules[$this->pierreDeSommet][1] += $voyelle[1];
                         }
                     }
                 }
                 
+                // boucle sur toutes les CONSONNES des lettres des noms et prenoms
                 foreach(BaseDeCalcul::$consonnes as $consonne){
-                    if ($nom[$i] == utf8_decode($consonne[0])){
-                        $this->resultat_pierreDePersonnalite += $consonne[1];
+                    if ($nomPrenom[$i] == utf8_decode($consonne[0])){
+                        // PIERRE de PERSONNALITE
+                        BaseDecalcul::$formules[$this->pierreDePersonnalite][1] += $consonne[1];
+                        // PIERRE de BASE
                         if($i == 0){
-                            $this->resultat_pierreDeBase += $consonne[1];
+                            BaseDecalcul::$formules[$this->pierreDeBase][1] += $consonne[1];
                         }
-                        if($i == (strlen($nom)-1)){
-                            $this->resultat_pierreDeSommet += $consonne[1];
+                        // PIERRE de SOMMET
+                        if($i == (strlen($nomPrenom)-1)){
+                            BaseDecalcul::$formules[$this->pierreDeSommet][1] += $consonne[1];
                         }
                     }
                 }
             }
         }
-
-        $this->valeur_pierreDappel = $this->resultat_pierreDappel;
-        $this->siResultatSuperieur33($this->resultat_pierreDappel);
-        $this->resultat_pierreDappel = $this->resultat_nouveauCalcul;
-
-        $this->valeur_pierreDePersonnalite = $this->resultat_pierreDePersonnalite;
-        $this->siResultatSuperieur33($this->resultat_pierreDePersonnalite);
-        $this->resultat_pierreDePersonnalite = $this->resultat_nouveauCalcul;
-        
-        $this->valeur_pierreDeVoeux = $this->resultat_pierreDeVoeux;
-        $this->siResultatSuperieur33($this->resultat_pierreDeVoeux);
-        $this->resultat_pierreDeVoeux = $this->resultat_nouveauCalcul;
-        
-        $this->valeur_pierreDeBase = $this->resultat_pierreDeBase;
-        $this->siResultatSuperieur33($this->resultat_pierreDeBase);
-        $this->resultat_pierreDeBase = $this->resultat_nouveauCalcul;
-        
-        $this->valeur_pierreDeSommet = $this->resultat_pierreDeSommet;
-        $this->siResultatSuperieur33($this->resultat_pierreDeSommet);
-        $this->resultat_pierreDeSommet = $this->resultat_nouveauCalcul;
     }
   
     // PIERRE D EXPRESSION
     // Somme de la pierre d'Appel et Personnalité (non réduite).
-    
-    public function pierreDexpression()
+    private function pierreDexpression()
     {
-        
-        $this->resultat_pierreDexpression  = $this->valeur_pierreDappel + $this->valeur_pierreDePersonnalite;
-        $this->valeur_pierreDexpression    = $this->resultat_pierreDexpression;
-
-        $this->siResultatSuperieur33($this->resultat_pierreDexpression);
-        $this->resultat_pierreDexpression = $this->resultat_nouveauCalcul;
+        BaseDecalcul::$formules[$this->pierreDexpression][1] =
+                    + BaseDecalcul::$formules[$this->pierreDappel][1]
+                    + BaseDecalcul::$formules[$this->pierreDePersonnalite][1];
     }
 
     // PIERRE DE TOUCHE
-    // Somme de toutes les pierres sauf chemin de vie et voeux (non réduite).
-    
-    public function pierreDeTouche(){
-        $this->resultat_pierreDeTouche  = $this->valeur_pierreDeBase
-                                        + $this->valeur_pierreDeSommet
-                                        + $this->valeur_pierreDappel
-                                        + $this->valeur_pierreDePersonnalite
-                                        + $this->valeur_pierreDexpression;
-        $this->siResultatSuperieur33($this->resultat_pierreDeTouche);
-        $this->resultat_pierreDeTouche = $this->resultat_nouveauCalcul;
-    }
+    // Somme de toutes les pierres (résultat non réduits) sauf chemin de vie et voeux.
+    private function pierreDeTouche(){
+        BaseDecalcul::$formules[$this->pierreDeTouche][1]  =
+                    + BaseDecalcul::$formules[$this->pierreDeBase][1]
+                    + BaseDecalcul::$formules[$this->pierreDeSommet][1]
+                    + BaseDecalcul::$formules[$this->pierreDappel][1]
+                    + BaseDecalcul::$formules[$this->pierreDePersonnalite][1]
+                    + BaseDecalcul::$formules[$this->pierreDexpression][1]; 
+                }
 
-    // 
-    // PIERRE DE CHEMIN DE VIE est la somme de la date de naissance
-    // 
-    public function pierreDeVie(){
+    // PIERRE DE CHEMIN DE VIE
+    // la somme de la date de naissance
+    private function pierreDeVie(){
         foreach($this->dateNaissance as $date){
-            $this->resultat_pierreDeVie += floatval($date); // floatval retourne la valeur decimale ex: 1969+03+21 
+            // floatval retourne la valeur decimale ex: 1969+03+21 
+            BaseDecalcul::$formules[$this->pierreDeVie][1] += floatval($date);
         }
-        $this->siResultatSuperieur33($this->resultat_pierreDeVie);
-        $this->resultat_pierreDeVie = $this->resultat_nouveauCalcul;
     }
 
-    // 
-    // FUNCTION RETURN RESULTAT si les sommes trouvées sont supérieures à 33 = nombre de pierre max
-    // 
-    function siResultatSuperieur33($resultat){
+    // FUNCTION RETURN RESULTAT
+    // si les sommes trouvées sont supérieures à 33 = nombre de pierre max
+    private function siResultatSuperieur33(){
         
-        $this->resultat_nouveauCalcul = $resultat;
+        for ($i = 0; $i<count(BaseDeCalcul::$formules); $i++){
+            // l'index [$i][1] garde sa valeur de base et l'index [$i][2] recoit la même valeur ou sa valeur recalculée si > 33
+            BaseDeCalcul::$formules[$i][2] = BaseDeCalcul::$formules[$i][1];
 
-        if ($resultat>33){
-            $nouveauResultat = str_split($resultat);
-            $this->resultat_nouveauCalcul = 0;
-            foreach($nouveauResultat as $index){
-                $this->resultat_nouveauCalcul += $index;
-            }    
+            if (BaseDeCalcul::$formules[$i][1]>33){
+                $resultat = str_split(BaseDeCalcul::$formules[$i][1]);
+                BaseDeCalcul::$formules[$i][2] = 0;
+                foreach($resultat as $index){
+                    BaseDeCalcul::$formules[$i][2] += $index;
+                } 
+            }
         }
-
-        return($this->resultat_nouveauCalcul);
     }
 }
