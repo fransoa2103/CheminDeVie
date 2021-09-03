@@ -1,10 +1,17 @@
-# CheminDeVie
-I'm training to reproduce this website https://www.bracelet-chemin-de-vie.fr/
-with PHP and POO. i code only algorithmic not the design front-end. 
-The goal is not the design but the logic.
+# CheminDeVie 
+L'exercice ici consiste à coder un Chemin de Vie avec pour base le site https://www.bracelet-chemin-de-vie.fr/. 
+Etape 1
+Coder les 8 modes de calculs liés au chemin de vie, en utilisant la POO, les Class et les tableaux.
+Etape 2
+Intégrer une librairie DOMPDF pour que l'utilisateur puisse sauvegarder et imprimer son Chemin de Vie.
+Etape 3
+Creer une BDD pour sauvegarder les utilisateurs et leur résultat et se reconnecter si besoin.
 
-#1 the formulaire
-First i want the entries in the register form to be strict. Because the calcul of the results strictly needs it.
-i use REGEX line code 
-/ utf8_decode($var) / preg_match_all('/[\/\\\&~"#{([`_^@)°%=}+$£¤¨%µ*§!:;.,?0-9\'\]]/',$var)
-characters only accept : [a-z] and [àâäéèêëîïìôöùûü]
+# Path Life 
+I'm training to reproduce this website https://www.bracelet-chemin-de-vie.fr/
+Step 1
+I code only algorithmic with method POO Class and Array. The goal is not the design but the logic.
+Step 2
+Use DOMPDF library for users can save and/or print 'Path life'
+Step 3
+Create BDD for users can connect later and always find their result.
