@@ -1,7 +1,9 @@
 <?php
 require_once 'BaseDeCalcul.php';
-class Bracelet extends BaseDeCalcul {
 
+class Bracelet extends BaseDeCalcul {
+    
+    
     public function __construct($data_formulaire){
 
         // ATTRIBUTS
@@ -13,7 +15,7 @@ class Bracelet extends BaseDeCalcul {
         $this->dateNaissance    = explode("-",$this->dateNaissance);
         
         $this->nombreChampsFormulaire = count($data_formulaire)+1; // si un jour le nombre de champs de saisie évolue
-
+        
         $this->pierreDeBase         = 0;
         $this->pierreDeSommet       = 1;
         $this->pierreDeVie          = 2;
@@ -34,7 +36,7 @@ class Bracelet extends BaseDeCalcul {
         
     }
 
-    
+    // FUNCTION controleDuFormulaire
     // ici la fonction controle la validité des 3 champs du formulaire
     // si un caractère non alphabétique est trouvé, une erreur = 1 est retournée
     // this function control validity for the 3 values of the form
@@ -50,26 +52,19 @@ class Bracelet extends BaseDeCalcul {
         }
     }
 
-    // fonction fusion des champs noms et prenoms, ainsi 5 calculs de pierres se font en 1 seule boucle
-    // merge function fields name + firstname then 5 stone calcul are done in one single loop
+    // FUNCTION fusionDesNomsPrenoms
+    // En fusionnant les champs noms et prenoms, cela permet de faire 5 calculs de pierres en 1 seule boucle
+    // Mais le champs [prenoms] doit vérifier s'il existe plusieurs prénoms car pour lle 
+    // 1> je scinde les prénoms $tab_nomsPrenoms['prenoms']
+    // 2> puis ils sont fusionnés avec le nom du pere et le nom de la mere en un seul tableau
+    // 1> split $tab_nomsPrenoms['prenoms']
+    // 2> firstnames are merge with dad & mother name, result all in one 
+     
 
     private function fusionDesNomsPrenoms(){
-        
-        // efface le champs date de naissance // delete birthday
-        array_pop($this->tab_nomsPrenoms);
-
-        // $prenoms contiendra tous le champs des prénoms saisis sous forme de longue chaine
-        // pour pouvoir naviguer lettre par lettre
-        $prenoms = str_split($this->tab_nomsPrenoms['prenoms']);
-        // crée variable tampon pour fabriquer le nouveau tableau 
-        // create new val buffer to build new tab
-        $prenoms_tampon = "";
-        
-        // 1> je scinde les prénoms $tab_nomsPrenoms['prenoms']
-        // 2> puis ils sont fusionnés avec le nom du pere et le nom de la mere en un seul tableau
-        // 1> split $tab_nomsPrenoms['prenoms']
-        // 2> firstnames are merge with dad & mother name, result all in one 
-        
+        array_pop($this->tab_nomsPrenoms);  // efface le champs date de naissance // delete birthday
+        $prenoms = str_split($this->tab_nomsPrenoms['prenoms']); // $prenoms contiendra tous le champs des prénoms saisis sous forme d'une longue chaine pour pouvoir naviguer lettre par lettre
+        $prenoms_tampon = ""; // crée variable tampon pour fabriquer le nouveau tableau // create new val buffer to build new tab
         foreach($prenoms as $lettre_prenom){ 
             if ($lettre_prenom != " "){
                 $prenoms_tampon = $prenoms_tampon.$lettre_prenom;
@@ -88,19 +83,12 @@ class Bracelet extends BaseDeCalcul {
 
     private function pierreDappelVoeuxBasePersonnaliteSommet() {
         
-        foreach ($this->tab_nomsPrenoms as $nomPrenom){
-            
-            // $nomPrenom = nom ou prenom du formulaire
+        foreach ($this->tab_nomsPrenoms as $nomPrenom){ // $nomPrenom = nom ou prenom du formulaire
             $nomPrenom = mb_strtolower($nomPrenom); 
             $nomPrenom = utf8_decode($nomPrenom);
-
-            // pierre de voeux ne compte que la 1ère voyelle trouvée
-            $pierreDeVoeux_premiereVoyelle = true;
-
-            // boucle sur toutes les lettres des noms et prenoms
-            for ($i = 0; $i<strlen($nomPrenom) ; $i++){
-                // boucle sur toutes les VOYELLES des lettres des noms et prenoms
-                foreach(BaseDeCalcul::$voyelles as $voyelle){
+            $pierreDeVoeux_premiereVoyelle = true; // pierre de voeux ne compte que la 1ère voyelle trouvée
+            for ($i = 0; $i<strlen($nomPrenom) ; $i++){ // boucle sur toutes les lettres des noms et prenoms
+                foreach(BaseDeCalcul::$voyelles as $voyelle){ // boucle sur toutes les VOYELLES des lettres des noms et prenoms
                     if ($nomPrenom[$i] == utf8_decode($voyelle[0])){
                         // PIERRE d APPEL
                         BaseDecalcul::$formules[$this->pierreDappel][1] += $voyelle[1];
@@ -174,13 +162,13 @@ class Bracelet extends BaseDeCalcul {
         
         for ($i = 0; $i<count(BaseDeCalcul::$formules); $i++){
             // l'index [$i][1] garde sa valeur de base et l'index [$i][2] recoit la même valeur ou sa valeur recalculée si > 33
-            BaseDeCalcul::$formules[$i][2] = BaseDeCalcul::$formules[$i][1];
+            // BaseDeCalcul::$formules[$i][2] = BaseDeCalcul::$formules[$i][1];
 
             if (BaseDeCalcul::$formules[$i][1]>33){
                 $resultat = str_split(BaseDeCalcul::$formules[$i][1]);
-                BaseDeCalcul::$formules[$i][2] = 0;
+                BaseDeCalcul::$formules[$i][1] = 0;
                 foreach($resultat as $index){
-                    BaseDeCalcul::$formules[$i][2] += $index;
+                    BaseDeCalcul::$formules[$i][1] += $index;
                 } 
             }
         }

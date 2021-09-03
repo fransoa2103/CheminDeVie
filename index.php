@@ -1,4 +1,6 @@
 <?php
+
+
     if (isset($_GET['error'])){
         if($_GET['error'] == 1){
             echo '<h3 style="color: red;">'.$_GET['message'].'</h3>';
@@ -33,6 +35,5 @@
 
             <input type="submit" value="valider">
         </form>    
-    
 </body>
 </html>

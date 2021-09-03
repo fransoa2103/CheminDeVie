@@ -21,14 +21,14 @@
             'fluorite', 'perle', 'sodalite', 'quartz fumé','souffre', 'mercure', 'sel'
         ];
         public static $formules = [
-            ['pierreDeBase', 0, 0],
-            ['pierreDeSommet', 0, 0],
-            ['pierreDeVie', 0, 0],
-            ['pierreDappel', 0, 0],
-            ['pierreDePersonnalite', 0, 0],
-            ['pierreDexpression', 0, 0],
-            ['pierreDeTouche', 0, 0],
-            ['pierreDeVoeux', 0, 0]
+            ['pierreDeBase', 0],
+            ['pierreDeSommet', 0],
+            ['pierreDeVie', 0],
+            ['pierreDappel', 0],
+            ['pierreDePersonnalite', 0],
+            ['pierreDexpression', 0],
+            ['pierreDeTouche', 0],
+            ['pierreDeVoeux', 0]
         ];
         
     }
