@@ -14,11 +14,11 @@
             ['y',7]
         ];
         public static $pierres = [
-            'quartz rose','jasper rouge','calcédoine','jade','émeraude','grenat', 'citrine',
-            'obsidienne','aigue marine','rhodochrosite','cornaline','ambre', 'hématite',
-            'améthyste', 'malachite', 'opale', 'turquoise', 'pierre de lune','topaze', 'lapis lazuli',
-            'tourmaline', 'cristal de roche', 'azurite', 'amazonite','oeil de tigre', 'pyrite',
-            'fluorite', 'perle', 'sodalite', 'quartz fumé','souffre', 'mercure', 'sel'
+            'quartz-rose','jasper-rouge','calcedoine','jade','emeraude','grenat', 'citrine',
+            'obsidienne','aigue-marine','rhodochrosite','cornaline','ambre', 'hematite',
+            'amethyste', 'malachite', 'opale', 'turquoise', ['Pierre De Lune','pierre-de-lune'],'topaze', 'lapis-lazuli',
+            'tourmaline', 'cristal-de-roche', 'azurite', 'amazonite','oeil-de-tigre', 'pyrite',
+            'fluorite', 'perle', 'sodalite', 'quartz-fume','souffre', 'mercure', 'sel'
         ];
         public static $formules = [
             ['pierreDeBase', 0],
