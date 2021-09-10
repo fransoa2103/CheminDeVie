@@ -47,11 +47,10 @@
                     </div>
                 </div><?php
             }
+            include 'lien_retour_index.php';
         ?>
         </br><a href="generateur_PDF.php">generer pdf</a>;
+        
     </div>
 </body>
 </html>
-
-
-

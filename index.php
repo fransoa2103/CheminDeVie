@@ -1,6 +1,4 @@
 <?php
-
-
     if (isset($_GET['error'])){
         if($_GET['error'] == 1){
             echo '<h3 style="color: red;">'.$_GET['message'].'</h3>';
@@ -19,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calcul CDV en PHP/POO</title>
     </head>
-    <body>
+    <body style="text-align: center; font-size: 2rem;">
         <form id="userNew" action="./src/page_resultats.php" method="POST">
             <label for="prenoms"><b>Saisissez TOUS vos prénoms</label></br>
             <input required type="text" name="prenoms" id="prenoms" size="75" placeholder="en minuscule"></br></br>
