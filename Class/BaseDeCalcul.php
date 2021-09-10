@@ -14,11 +14,22 @@
             ['y',7]
         ];
         public static $pierres = [
-            'quartz rose','jasper rouge','calcédoine','jade','émeraude','grenat', 'citrine',
-            'obsidienne','aigue marine','rhodochrosite','cornaline','ambre', 'hématite',
-            'améthyste', 'malachite', 'opale', 'turquoise', 'pierre de lune','topaze', 'lapis lazuli',
-            'tourmaline', 'cristal de roche', 'azurite', 'amazonite','oeil de tigre', 'pyrite',
-            'fluorite', 'perle', 'sodalite', 'quartz fumé','souffre', 'mercure', 'sel'
+            'quartz-rose','jasper-rouge','calcedoine','jade','emeraude','grenat', 'citrine',
+            'obsidienne','aigue-marine','rhodochrosite','cornaline','ambre', 'hematite',
+            'amethyste', 'malachite', 'opale', 'turquoise', 'pierre-de-lune','topaze', 'lapis-lazuli',
+            'tourmaline', 'cristal-de-roche', 'azurite', 'amazonite','oeil-de-tigre', 'pyrite',
+            'fluorite', 'perle', 'sodalite', 'quartz-fume','souffre', 'mercure', 'sel'
         ];
+        public static $formules = [
+            ['pierreDeBase', 0],
+            ['pierreDeSommet', 0],
+            ['pierreDeVie', 0],
+            ['pierreDappel', 0],
+            ['pierreDePersonnalite', 0],
+            ['pierreDexpression', 0],
+            ['pierreDeTouche', 0],
+            ['pierreDeVoeux', 0]
+        ];
+        
     }
 ?>

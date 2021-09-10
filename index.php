@@ -1,11 +1,11 @@
 <?php
     if (isset($_GET['error'])){
         if($_GET['error'] == 1){
-            echo '<h1 style="color: red;">'.$_GET['message'].'</h1>';
+            echo '<h3 style="color: red;">'.$_GET['message'].'</h3>';
         }
         else
         {
-            echo '<h1 style="color: green;">'.$_GET['message'].'</h1>';
+            echo '<h3 style="color: green;">'.$_GET['message'].'</h3>';
         }
     }
 ?>
@@ -17,8 +17,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calcul CDV en PHP/POO</title>
     </head>
-    <body>
-        <form id="userNew" action="./src/mainPage.php" method="POST">
+    <body style="text-align: center; font-size: 2rem;">
+        <form id="userNew" action="./src/page_resultats.php" method="POST">
             <label for="prenoms"><b>Saisissez TOUS vos prénoms</label></br>
             <input required type="text" name="prenoms" id="prenoms" size="75" placeholder="en minuscule"></br></br>
 
@@ -29,10 +29,9 @@
             <input required type="text" name="nomMere" id="nomMere" size="25" placeholder="en minuscule"></br></br>
 
             <label for="dateNaissance">Date de naissance</label></br>
-            <input type="date" id="dateNaissance" name="dateNaissance">                        
+            <input required type="date" id="dateNaissance" name="dateNaissance">                        
 
             <input type="submit" value="valider">
         </form>    
-    
 </body>
 </html>

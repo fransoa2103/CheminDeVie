@@ -1,4 +1,5 @@
 # CheminDeVie
+<<<<<<< HEAD
 I'm training to reproduce this website https://www.bracelet-chemin-de-vie.fr/
 with PHP and POO. i code only algorithmic not the design front-end. 
 The goal is not the design but the logic.
