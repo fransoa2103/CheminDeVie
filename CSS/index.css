@@ -1,0 +1,115 @@
+*, ::after, ::before {
+    box-sizing:         border-box;
+    padding:            0px;
+    margin:             0px;
+    
+}
+@font-face {
+    src: url('Botera-Regular.otf');
+    font-family: 'Botera';
+}
+:root {
+    
+    --texte_police: 'Botera';
+    --texte_size: 1.25rem;
+    
+    --color_1: #0f0f0f;
+    --color_2: rgba(240, 240, 240, 0.85);
+    --color_3: #1dd1a1;
+    --color_4: #8395a7;
+}
+
+html {
+    scroll-behavior:    smooth;
+    user-select:        none;
+    letter-spacing:     1px;
+
+}
+body{
+    color:              var(--color_1);
+    background-color:   var(--color_4);
+    font-family:        var(--texte_police);
+    font-size:          var(--texte_size);
+
+    width:              100%;
+    padding:            1%;    
+
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    flex-wrap:          wrap;
+}
+summary {
+    font-size: calc(0.8 * var(--texte_size));
+}
+.right_section, .left_section {
+    width:              100%;
+    text-align:         center;
+    margin-top:         1%;
+    border:             1px solid black;
+    padding:            1%;
+}
+h1 {
+    background-color:   var(--color_3);
+    color:              var(--color_2);
+    width:              100%;
+    padding:            1%;
+    text-align:         center;
+    font-size:          calc(0.9*var(--texte_size));
+}
+p {
+    width:              auto;
+}
+ul {
+    list-style-type:    ">> ";
+    text-align:         left;
+}
+
+.rules {
+    width:              100%;
+    margin:             0 auto;
+    font-size:          calc(0.8*var(--texte_size));
+}
+
+input {
+    font-size:          calc(0.8*var(--texte_size));
+}
+.lenght_input {
+    min-width:          100%;
+    height:             auto;
+}
+
+@media screen and (min-width:450px) {
+    :root{
+        --texte_size: 1.25rem;
+    }
+}
+@media screen and (min-width:950px) {
+    :root{
+        --texte_size: 1.5rem;
+    }
+    .right_section, .left_section {
+        width:          50%;
+        text-align:     left;
+        border:         none;
+    }
+    
+}
+@media screen and (min-width:1350px) {
+    :root{
+    --texte_size: 1.75rem;
+    }
+    .right_section, .left_section {
+        width: 50%;
+        text-align: left;
+    }
+}
+@media screen and (min-width:1650px) {
+    :root{
+    --texte_size: 2rem;
+    }
+    .right_section, .left_section {
+        width: 50%;
+        text-align: left;
+    }
+}
