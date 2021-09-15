@@ -7,35 +7,28 @@ let section_summary     = document.createElement('summary');
 
 let screen_mobile = false;
 
-if (innerWidth <950){
-    
+function active_details(){
     screen_mobile = true;
-    document.querySelector('div').remove();
+    document.querySelector('div.rules').remove();
     section_left.prepend(section_details);
     section_summary.textContent = "Cliquez pour obtenir les consignes à respecter pour la saisie du formulaire";
     section_details.prepend(section_summary);
     section_details.prepend(section_rules);
-   
+}; 
+
+if (innerWidth <950){
+    active_details();
 }
 else {
-
     screen_mobile = false;
-
 }
 
 window.addEventListener('resize', ()=>{
     if (innerWidth <950 && screen_mobile == false){
-
-        screen_mobile = true;
-        document.querySelector('div').remove();
-        section_left.prepend(section_details);
-        section_summary.textContent = "Cliquez pour obtenir les consignes à respecter pour la saisie du formulaire";
-        section_details.prepend(section_summary);
-        section_details.prepend(section_rules);
+        active_details();
     }
     else {
         if (innerWidth > 950 && screen_mobile == true){
-            
             screen_mobile = false;
             document.querySelector('summary').remove();
             document.querySelector('details').remove();

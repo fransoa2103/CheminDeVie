@@ -1,0 +1,166 @@
+*, ::after, ::before {
+    box-sizing:         border-box;
+    padding:            0px;
+    margin:             0px;
+    
+}
+@font-face {
+    src:                url('./images/Botera-Regular.otf');
+    font-family:        'Botera';
+}
+:root {
+    
+    --texte_police:     'Botera';
+    --texte_size:       1.2rem;
+    
+    --color_1:          #0f0f0f;
+    --color_2:          #f0f0f0d9;
+    --color_3:          #1dd1a1;
+    --color_4:          #8395a7;
+}
+
+html {
+    scroll-behavior:    smooth;
+    user-select:        none;
+    letter-spacing:     1px;
+    font-family:        var(--texte_police), Arial, Helvetica, sans-serif;
+    font-size:          var(--texte_size);
+    
+}
+body{
+    color:              var(--color_1);
+    background-color:   var(--color_4);
+
+    width:              100%;
+    padding:            1%;    
+
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    flex-wrap:          wrap;
+}
+summary {
+    font-size: calc(0.8 * var(--texte_size));
+}
+.right_section, .left_section {
+    width:              100%;
+    text-align:         center;
+    margin-top:         1%;
+    border:             1px solid black;
+    padding:            1%;
+}
+h1 {
+    background-color:   var(--color_3);
+    color:              var(--color_2);
+    width:              100%;
+    padding:            1%;
+    text-align:         center;
+    font-size:          calc(1.2*var(--texte_size));
+}
+p {
+    width:              auto;
+}
+ul {
+    list-style-type:    ". ";
+    text-align:         left;
+}
+li {
+    padding:            0.5%;
+}
+
+.rules {
+    width:              100%;
+    margin:             0 auto;
+    font-size:          calc(0.8*var(--texte_size));
+}
+
+input {
+    font-size:          calc(0.8*var(--texte_size));
+    padding:            1%;
+    min-width:          100%;
+    height:             auto;
+}
+.lenght_input {
+    min-width:          auto;
+    height:             auto;
+}
+/* ------------------------------------------------------------------------------------ */
+/* PAGE RESULTAT ECRAN */
+/* ------------------------------------------------------------------------------------ */
+
+.grid_resultat {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+div.entete {
+    width:              100%;
+    padding:            1%;
+    margin:             1% 0 5% 0;
+    border:             1px black solid;
+    text-align:         center;
+}
+
+/* DIV avec le fond de couleur */
+/* P. le numéro */
+/* IMG. l'image de la pierre */
+div.fond_couleur_pierre {
+    width: 150px;
+    height: 150px;
+}
+p.firstLetter::first-letter {
+    font-size: 4rem;
+    color: var(--color_2);
+    padding: 10px 0px 0px 10px;
+}
+img.image_position_pierre {
+    width: 150px;
+    position: relative;
+    transform: translate(35%,-25%);
+}
+section.grid_resultat>div:nth-child(2) {
+    margin-top: 5%;
+}
+section.grid_resultat>div:nth-child(3) {
+    font-weight: bold;
+    font-size: calc(1*var(--texte_size));
+}
+section.grid_resultat>div:nth-child(4) {
+    margin-bottom: 5%;
+}
+
+
+/* ------------------------------------------------------------------------------------ */
+/* MEDIA QUERIES */
+/* ------------------------------------------------------------------------------------ */
+@media screen and (min-width:950px) {
+    :root{
+        --texte_size:   1.3rem;
+    }
+    body {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .right_section, .left_section {
+
+        width:          50%;
+        text-align:     left;
+        border:         none;
+    }
+    .left_section {
+        align-self:     flex-start ;
+    }
+}
+@media screen and (min-width:1350px) {
+    :root{
+    --texte_size:       1.4rem;
+    }
+}
+@media screen and (min-width:1650px) {
+    :root{
+    --texte_size:       1.5rem;
+    }
+}

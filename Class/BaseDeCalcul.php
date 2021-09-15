@@ -1,34 +1,62 @@
 <?php 
     class BaseDeCalcul {
         public static $consonnes = [
-            ['b',2],['c',3],['ç',1],['d',4],['f',6],['g',7],['h',8],
-            ['j',1],['k',2],['l',3],['m',4],['n',5],['p',7],['q',8],
-            ['r',9],['s',1],['t',2],['v',4],['w',5],['x',6],['z',8]
+            ["b",2],["c",3],["ç",1],["d",4],["f",6],["g",7],["h",8],
+            ["j",1],["k",2],["l",3],["m",4],["n",5],["p",7],["q",8],
+            ["r",9],["s",1],["t",2],["v",4],["w",5],["x",6],["z",8]
         ];
         public static $voyelles = [
-            ['a',1],['à',9],['ä',6],['â',9],
-            ['e',5],['é',1],['è',1],['ê',1],['ë',5],
-            ['i',9],['ï',9],['î',5],
-            ['o',6],['ö',2],['ô',6],
-            ['u',3],['ù',3],['û',3],['ü',8],
-            ['y',7]
+            ["a",1],["à",9],["ä",6],["â",9],
+            ["e",5],["é",1],["è",1],["ê",1],["ë",5],
+            ["i",9],["ï",9],["î",5],
+            ["o",6],["ö",2],["ô",6],
+            ["u",3],["ù",3],["û",3],["ü",8],
+            ["y",7]
         ];
         public static $pierres = [
-            'quartz-rose','jasper-rouge','calcedoine','jade','emeraude','grenat', 'citrine',
-            'obsidienne','aigue-marine','rhodochrosite','cornaline','ambre', 'hematite',
-            'amethyste', 'malachite', 'opale', 'turquoise', 'pierre-de-lune','topaze', 'lapis-lazuli',
-            'tourmaline', 'cristal-de-roche', 'azurite', 'amazonite','oeil-de-tigre', 'pyrite',
-            'fluorite', 'perle', 'sodalite', 'quartz-fume','souffre', 'mercure', 'sel'
+            ["quartz-rose","le ","Amour, douceur, paix, écoute, confiance et harmonie dans les relations.","Cette pierre apporte une énergie maternelle. Elle aide à pardonner, à apaiser la tristesse et favorise la confiance en sois.", "#C28381"],
+            ["jasper-rouge","le ","Enracinement, encrage, réconfort, volonté, courage.","Énergie de la terre mère, elle rayonne d'une énergie vitale qui protège et purifie. Elle arrive en soutient pendant les périodes difficiles et prépare une éventuelle guérison. Elle aide le travaille au niveau de la prise de conscience.", "#7D1505"],
+            ["calcedoine","la ","Pierre de communication, parole, expression, énergie douce.","Elle aide à ouvrir l'esprit. Provoque une flexibilité mentale et une aisance verbale. Elle aide à formuler ce qui vient du cœur, bienveillance, enthousiasme et générosité.","#4B47A9"],
+            ["jade","la ","Pierre d'équilibre, activité, repos, pureté, protection.","Aide à la communication et aux calme. Suscite la curiosité et la sérénité. Développe l'humilité, la justice, le courage et la sagesse.","#172618"],
+            ["emeraude","l'","Équilibre, harmonie, guérison, connaissance.","Favorise l'amour, le travail d'équipe, l'unité et l'amitié. Elle aide à trouver le sens des choses.Ouvre le cœur et calme les peurs et les émotions.","#023E32"],
+            ["grenat","le ","Pierre d'ancrage, régénérante, ré-énergisante, résistance, force, volonté.","Rend actif. Active et renforce l'instinct de survie. Ancre le spirituel dans le corps. Elle travaille sur l'énergie vitale et est bonne pour le sang.","#562825"],
+            ["citrine","la ","Joie, gaieté, énergie solaire, partage, confiance, générosité, motivation, créativité.","Enseigne comment attirer la richesse. Elle aide à avancer, vers le futur sans se fier au passé. Aide à surmonter dépression, peurs et phobies.","#CF9845"],
+            ["obsidienne","l'","Pierre d'enracinement qui nous connecte au ciel.","Pont entre ciel et terre. Effet miroir qui nous fait affronter nos défauts, blocages et faiblesses. Calme le stress. Aide à intégrer notre côté sombre. Pierre protectrice qui agit contre la négativité.","#151514"],
+            ["aigue-marine","l'","Honnête, persévérante, dynamique, grande pureté.","Diminue le stress et calme le mental. Elle incite à la tolérance. Libère la communication bloquée et favorise l'expression personnelle. Diminue le stress et calme le mental. Aide à l'intuition et ouvre à la clairvoyance.","#64A0B0"],
+            ["rhodochrosite","la ","Pierre d'amour et de compassion, elle amène en douceur une paix émotionnelle.","Aide à apaiser le cœur, spécialement pour ceux qui se sentent rejetés. Enseigne au cœur à accueillir les sentiments douloureux refoulés sans se fermer. Encourage l'expression des sentiments. Donne une attitude positive, légère et dynamique face à la vie.","#E66B7C"],
+            ["cornaline","la ","Vitalité, courage, bonne humeur, motivation, créativité, vitalité.","Aide à contrôler son impuissance. Aide à nous incarner et à nous ancrer dans la réalité. Pierre qui développe l'intuition. Elle stabilise et nous centre sur nous mêmes.","#A20F04"],
+            ["ambre","l'","Stabilité, confiance, spontanéité, gaieté.","Aide à lâcher prise et se détendre. Aide à la prise de décision en apportant équilibre et patience. Relie l'énergie individuelle à l'énergie collective. Elle absorbe les énergies de mal être et de douleurs. Elle agit comme un guérisseur et apprend et favorise l'auto-guérison.","#CB7E2A"],
+            ["hematite","l'","Pierre qui apprend que les erreurs sont des expériences qui aident à avancer.","Favorise le développement et enlève ses barrières. Renforce le système énergétique. Aide à poursuivre ses objectifs. Elle apporte confiance, volonté et respect de soi. Elle stimule la concentration.","#8C8C87"],
+            ["amethyste","l'","Conscience, justice, méditation, éveil, intuition, clarté.","Bon pour le sommeil et les rêves. Combat les ivresses physiques et spirituelles. Transfère les faibles fréquence en vibrations élevées. Aide à surmonter le deuil. Apaise la tristesse et dissipe la peur, l'anxiété et la colère. Favorise l'amour divin et la sagesse spirituelle.","#441455"],
+            ["malachite","la ","Rend la vie plus intense, plus aventureuse, plus palpitante.","Guérit les blessures du cœur. Apporte la possibilité d'un amour inconditionnel. Elle rend conscient. Aide à remonter les sentiments douloureux et profonds refoulés et à les exprimer. Favorise l'observation, la représentation des choses et la prise de décision. Montre ce qui bloque l'épanouissement spirituel.","#2E6E43"],
+            ["opale", "","Passion, amour, érotisme, désir, séduisante.","Favorise la communication et la compréhension des autres. Pierre possédant une vibrationsubtile. Rend léger, heureux et joyeux. Intensifie les émotions et libère les sentiments. Aide à retrouver sa vrai personnalité enfouie.","#AC6D7A"],
+            ["turquoise","la ","Pierre protectrice depuis la nuit des temps.","Favorise la compréhension de son propre destin et rendre conscient que l'on est les maîtres de notre bonheur. Elle libère le mental et réconforte le corps et l'esprit. Elle réunit les énergies masculines et féminines. Apaise le mental et équilibre, stimule et favorise l'épanouissement personnel.","#6FD3DB"],
+            ["pierre-de-lune","la ","Son lien avec la lune est très puissant. Allège le mal-être, réceptive et passive.","Elle fait basculer l'inconscient vers le conscient et développe l'intuition. Elle nous rappelle que la vie est faite de changements et de cycles. Elle stabilise et apaise les émotions. C'est une pierre d'énergie féminine. Apaise pour les femmes les tensions liés au cycle menstruel. Pour les hommes, elle favorise la prise de contact avec leur côté féminin.","#F8DFAF"],
+            ["topaze","la ","Apaise, guérit, stimule, recharge et remotive. Joie générosité, abondance, santé.","Elle accélère le développement spirituel, stabilise et apaise les émotions. Favorise la vérité et le pardon et fait gagner en sagesse. Aide comprendre ses objectifs et ses richesses intérieurs. Elle rend réceptif à l'amour n'importe la source et la raison.","#3BA1C7"],
+            ["lapis-lazuli","le ","Nous fait voir la vérité en face, l'accepter et exprimer notre opinion.","Aide à exprimer nos sentiments et nos ressentis aux autres. Elle révèle notre propre vérité enfouie tout en apportant de la sagesse et de l'honnêteté. Favorise l'épanouissement en nous aidants à devenir qui nous voulons et qui nous sommes. Favorise la dignité et lafranchise.","#12254D"],
+            ["tourmaline","la ","Agit sur les champs magnétiques, aide à un sommeil réparateur de qualité, calme les cauchemars, encadre et vous ramène à la réalité.","Aide à se fixer des tâches et objectifs. Permet de se focaliser sur un but tout en gardant de la souplesse. Favorise le contact et aide à ouvrir son cœur.","#A36D74"],
+            ["cristal-de-roche","le ","Pureté, clarté, lumière, maître guérisseur.","Sa transparence vient clarifier les choses. C'est la pierre amplificatrice la plus puissante. Améliore la perception et permet d'avoir l'esprit clair. Met en valeur nos dons psychiques et nous accorde à notre but spirituel.","#C3BAB2"],
+            ["azurite","l'","Accroît les facultés extra-sensorielles, l'intuition, la télépathie.","Elle régule l'organisme et agit sur la matière cellulaire. Met en lumière les pensées cachées. Favorise la conscience des choses et la connaissance de soi même. Harmonise le matériel et le spirituel et purifie l'esprit.","#3D7B76"],
+            ["amazonite","l'","Douce, calmante, apaisante. Elle favorise la manifestation de l'amour éternel.","Elle équilibre les énergies féminines et masculines. Elle ouvre et guérit le cœur. Elle permet la paix entre l'intuition et la raison. Elle apaise les traumatisme émotionnels. Elle libère les communication affectueuse.","#4EC6A5"],
+            ["oeil-de-tigre","l'","Aide à trouver une lueur d'espoir quand tout paraît sombre.","Aide à garder ses distances et à se protéger des mauvaises influences en période de stress. Utile pour se remettre sur pied et retrouver sa combativité en douceur. Apporte du courage, de l'espoir et nous aide à surmonter les périodes difficiles. Donne de l'énergie et du dynamisme. Elle nous protège de tout ce qui peut être négatif et nocif, lieux, ambiances, personnes...","#9F5D06"],
+            ["pyrite","la ","Apporte la discipline et le sens de l'organisation.","Enracine et donne l'énergie vitale. Pierre de transformation. Montre nos aspect sombre et nous confronte à notre caractère. Elle nous aide à éloigner les peurs et à comprendre la cause de certaine situation de notre vie. Elle nous rend plus honnête en mettant en lumière secrets, sentiments et souvenirs cachés.","#494A4E"],
+            ["fluorite","la ","Rend créatif, intuitif et inventif. Favorise l'apprentissage, la croissance et la concentration.","Nous aide à nous défaire des idées fixes, des comportements bornés et des attitudes rigides en nous branchant à l'essentiel. Aide à l'organisation et à structurer notre vie","#3A234A"],
+            ["perle","la ","Elle est douce et apaisante. Elle est le reflet de nous même.","Souligne nos défauts pour nous faire accepter la vérité et assumer nos responsabilité. Nous aide à grandir intérieurement et à prendre conscience des choses. Nous apprend que chaque expérience douloureuse apporte du positif en nous aidant à mûrir et grandir.","#DDB398"],
+            ["sodalite","la ","Conscience, idéalisme, introspection, désir de vérité, apaisante, rassurante.","Nous aide à exprimer nos valeurs en parole ou acte. Permet de regarder sans jugement et d'accepter qui nous sommes. Permet d'éviter les comportements bloquant notre épanouissement. Aide à être fidèle à nous même. Favorise l'intuition.","#12254D"],
+            ["quartz-fume","le ","C'est un cristal « secret », il nous dit ce qui doit être dit.","Il aide à surmonter les mauvaises phases. Transforme la lumière en matière. Il calme et détend. Apporte de la souplesse et ancre la lumière en nous. Améliore la concentration et la mémoire. Aide à résoudre les contradictions et conflits et améliore le sens des responsabilités.","#906B40"],
+            ["souffre","le ","Pierre de transformation de la souffrance.","Il apporte de la joie et renforce l'esprit. Il absorbe nos énergies et émotions négatives. En alchimie le souffre représente l'activité de l'esprit. Il crée des changements immédiats dans nos états émotionnels et nous protège des mauvais sorts.","#DBC20E"],
+            ["mercure","le ","Pierre de passage.","C'est la nécessité absolue de sortir de l'obscurité. Passage de la non conscience à la conscience. Il est rarement trouver en état solide, sa solidification est un acte de magie. Le mercure intervient principalement quand subvient une vieille histoire avec l'alchimie.","#B7B0A6"],
+            ["sel","le ","Purification et transformation.","Depuis toujours le sel a été associé à la purification. Vous êtes le de la terre, signe de vie et de lumière.","#CD5634"]
         ];
         public static $formules = [
-            ['pierreDeBase', 0],
-            ['pierreDeSommet', 0],
-            ['pierreDeVie', 0],
-            ['pierreDappel', 0],
-            ['pierreDePersonnalite', 0],
-            ['pierreDexpression', 0],
-            ['pierreDeTouche', 0],
-            ['pierreDeVoeux', 0]
+            ["Base", 0, "En toute première position du bracelet, la pierre de Base représente nos racines."],
+            ["Sommet", 0, "En seconde position, la pierre de Sommet représente nos réalisations spirituelles."],
+            ["Vie", 0, "En troisième position, la pierre de Vie donne la piste à suivre pour passer de la base au sommet."],
+            ["Appel", 0, "En quatrième position, la pierre d' Appel révèlent nos émotions profondes."],
+            ["Personnalite", 0, "En cinquième et dernière position, la pierre de Personnalité représente le mental, apaise votre esprit."],
+            ["Expression", 0, "En sixième position, la pierre d'Expression symbolise la communication."],
+            ["Touche", 0, "En septième position, la pierre de Touche vous ouvre toutes les portes, avec elle tout est possible."],
+            ["Voeux", 0, "En huitième et dernière position, la pierre de Voeux représente la sensibilité intérieure, la fibre des aspirations et les vœux."]
         ];
         
     }

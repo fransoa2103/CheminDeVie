@@ -18,7 +18,7 @@ class Bracelet extends BaseDeCalcul {
         
         // pour une meilleure lecture du code j'attribue un nom de constante pour chacune des 8 formules 
         // cela revient à écrire BaseDecalcul::$formules[$this->pierreDeVoeux] plutot que BaseDecalcul::$formules[7]
-        // ce n'est peut-être une bonne pratique mais pour moi (dans un an ou plus) ou pour une tierce personne cela est plus facile à lire.
+        // ce n'est peut-être une bonne pratique mais pour moi (dans un an ou plus) ou pour une tierce personne cela sera plus facile à lire.
         $this->pierreDeBase         = 0;
         $this->pierreDeSommet       = 1;
         $this->pierreDeVie          = 2;
@@ -45,7 +45,6 @@ class Bracelet extends BaseDeCalcul {
     // this function control validity for the 3 values of the form
     // if one no-alphabetic character is find, then error return = 1
     private function controleDuFormulaire(){ 
-        
         foreach($this->tab_nomsPrenoms as $nomPrenom){
             $nomPrenom = utf8_decode($nomPrenom);
             if ((preg_match_all('/[\/\\\&~"#{([`_^@)°%=}+$£¤¨%µ*§!:;.,?0-9\'\]]/',$nomPrenom))){ 
@@ -62,9 +61,9 @@ class Bracelet extends BaseDeCalcul {
     // puis ils sont fusionnés avec le nom du pere et le nom de la mere en un seul tableau
     // j'efface le champs date de naissance // delete birthday
     // $prenoms contiendra tous le champs des prénoms saisis sous forme d'une longue chaine pour pouvoir naviguer lettre par lettre
-    // je crée variable tampon pour fabriquer le nouveau tableau // create new val buffer to build new tab
+    // je crée une variable tampon pour fabriquer le nouveau tableau
     // j'ajoute le dernier champs trouvé à la fin de la boucle
-    // j'efface le champs des prenoms pour éviter un doublon et donc une erreur de clacul
+    // j'efface le champs des prenoms pour éviter un doublon et donc une erreur de calcul
 
     private function fusionDesNomsPrenoms(){
         array_pop($this->tab_nomsPrenoms);  
