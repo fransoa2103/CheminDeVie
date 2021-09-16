@@ -1,6 +1,4 @@
-<?php session_start(); ?>
-
-<?php
+<?php session_start();
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -19,7 +17,7 @@ $options->set('defaultFont', 'courier');
 $dompdf     = new Dompdf($options);
 
 ob_start();
-require_once './resultats_PDF.php';
+require_once 'C:\xampp\htdocs\CheminDeVie\resultats_PDF.php';
 $html = ob_get_contents();
 ob_end_clean();
 
@@ -27,5 +25,6 @@ $dompdf->loadHtml($html); // charge du code html
 $dompdf->setPaper('A4', 'portrait'); // définit le format de page
 $dompdf->render(); // génère le fichier en mémoire
 
-$fichier = 'fichier Chemin de Vie.pdf';
-$dompdf->stream($fichier); // créee le fichier en ligne
+// $fichier = 'fichier Chemin de Vie.pdf';
+// $dompdf->stream($fichier); // créee le fichier en ligne
+$dompdf->stream(); // créee le fichier en ligne

@@ -217,6 +217,7 @@ class Bracelet extends BaseDeCalcul {
                     BaseDeCalcul::$formules[$i][1] += $index;
                 } 
             }
+            BaseDeCalcul::$formules[$i][1]= BaseDeCalcul::$formules[$i][1]-1;
         }
     }
 }
