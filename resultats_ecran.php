@@ -16,7 +16,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-    <?php include ('asset/html_head.php'); ?>
+    <?php include ('components/html_head.php'); ?>
     <body>
         <h1>Chemin De Vie</h1>
         <div class="entete">
@@ -50,8 +50,9 @@
                     echo '</div>';
                 echo '</section>';
             }
-            include 'asset/lien_retour_index.php';
+            // var_dump($_SESSION);
+            include 'components/lien_retour_index.php';
         ?>
-        <a href="asset/generateur_PDF.php">Générer votre chemin de vie au format PDF</a>;
+        <a href="components/generateur_PDF.php">Générer votre chemin de vie au format PDF</a>;
     </body>
 </html>

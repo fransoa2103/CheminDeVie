@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -25,6 +26,6 @@ $dompdf->loadHtml($html); // charge du code html
 $dompdf->setPaper('A4', 'portrait'); // définit le format de page
 $dompdf->render(); // génère le fichier en mémoire
 
-// $fichier = 'fichier Chemin de Vie.pdf';
-// $dompdf->stream($fichier); // créee le fichier en ligne
-$dompdf->stream(); // créee le fichier en ligne
+$fichier = 'fichier Chemin de Vie.pdf';
+$dompdf->stream($fichier); // créee le fichier en ligne
+// $dompdf->stream(); // créee le fichier en ligne

@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-    <?php include './asset/html_head.php'; ?>
+    <?php include './components/html_head.php'; ?>
     <body>
         <h1>Calcul de votre Chemin De Vie</h1>
         <section class="left_section">
