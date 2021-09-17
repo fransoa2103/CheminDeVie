@@ -27,32 +27,43 @@
             ?>
         </div>
         <?php
-            for($i = 0; $i<count(BaseDeCalcul::$formules); $i++){
-                $_SESSION['user']['nom_formule'.$i]         = BaseDeCalcul::$formules[$i][0];
-                $_SESSION['user']['definition_formule'.$i]  = BaseDeCalcul::$formules[$i][2];
-                $_SESSION['user']['nom_pierre'.$i]          = BaseDeCalcul::$pierres[BaseDeCalcul::$formules[$i][1]][0];
-                $_SESSION['user']['article_pierre'.$i]      = BaseDeCalcul::$pierres[BaseDeCalcul::$formules[$i][1]][1];
-                $_SESSION['user']['definition_1_pierre'.$i] = BaseDeCalcul::$pierres[BaseDeCalcul::$formules[$i][1]][2];
-                $_SESSION['user']['definition_2_pierre'.$i] = BaseDeCalcul::$pierres[BaseDeCalcul::$formules[$i][1]][3];
-                $_SESSION['user']['couleur'.$i]             = BaseDeCalcul::$pierres[BaseDeCalcul::$formules[$i][1]][4];
-                echo '<section class="grid_resultat">';
-                    echo '<div>';
-                        echo '<div class = "fond_couleur_pierre" style="background-color:'.$_SESSION['user']['couleur'.$i].'">';
-                            echo '<p class = "firstLetter">'.($i+1).'</p>';
-                                echo '<img class = "image_position_pierre" src = "./images/'.$_SESSION['user']['nom_pierre'.$i].'.png" alt = "" >';
+            $i = 0;
+            foreach(BaseDeCalcul::$formules as $formule){
+                $_SESSION['user']['nom_formule'.$i]         = $formule[0];
+                $_SESSION['user']['resultat_formule'.$i]    = $formule[1];
+                $_SESSION['user']['definition_formule'.$i]  = $formule[2];
+                foreach(BaseDeCalcul::$pierres as $key=>$pierre){
+                    
+                    if($key == $formule[1]){
+
+                        $_SESSION['user']['nom_pierre'.$i]          = $pierre[0];
+                        $_SESSION['user']['article_pierre'.$i]      = $pierre[1];
+                        $_SESSION['user']['definition_1_pierre'.$i] = $pierre[2];
+                        $_SESSION['user']['definition_2_pierre'.$i] = $pierre[3];
+                        $_SESSION['user']['couleur'.$i]             = $pierre[4];
+
+                        echo '<section class="grid_resultat">';
+                            echo '<div>';
+                                echo '<div class = "fond_couleur_pierre" style="background-color:'.$_SESSION['user']['couleur'.$i].'">';
+                                    echo '<p class = "firstLetter">'.$i.'</p>';
+                                        echo '<img class = "image_position_pierre" src = "./images/'.$_SESSION['user']['nom_pierre'.$i].'.png" alt = "" >';
+                                    echo '</div>';
+                                echo '</div>';
                             echo '</div>';
-                        echo '</div>';
-                    echo '</div>';
-                    echo '<div>'.$_SESSION['user']['definition_formule'.$i].'</div>';
-                    echo '<div>Votre pierre de '.$_SESSION['user']['nom_formule'.$i].' est '.$_SESSION['user']['article_pierre'.$i].$_SESSION['user']['nom_pierre'.$i].'.</div>';
-                    echo '<div>';
-                        echo '<p>'.$_SESSION['user']['definition_1_pierre'.$i].' '.$_SESSION['user']['definition_2_pierre'.$i].'</p>';
-                    echo '</div>';
-                echo '</section>';
+                            echo '<div>'.$_SESSION['user']['definition_formule'.$i].'</div>';
+                            echo '<div>Votre pierre de '.$_SESSION['user']['nom_formule'.$i].' est '.$_SESSION['user']['article_pierre'.$i].$_SESSION['user']['nom_pierre'.$i].'.</div>';
+                            echo '<div>';
+                                echo '<p>'.$_SESSION['user']['definition_1_pierre'.$i].' '.$_SESSION['user']['definition_2_pierre'.$i].'</p>';
+                            echo '</div>';
+                        echo '</section>';
+                    }
+                }
+
+                $i++;
             }
             // var_dump($_SESSION);
             include 'components/lien_retour_index.php';
         ?>
-        <a href="components/generateur_PDF.php">Générer votre chemin de vie au format PDF</a>;
+        <a href="generateur_PDF.php">Générer votre chemin de vie au format PDF</a>;
     </body>
 </html>
