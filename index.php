@@ -1,30 +1,27 @@
-<?php
-    if (isset($_GET['error'])){
-        if($_GET['error'] == 1){
-            echo '<h3 style="color: red;">'.$_GET['message'].'</h3>';
-        }
-        else
-        {
-            echo '<h3 style="color: green;">'.$_GET['message'].'</h3>';
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <?php include './components/html_head.php'; ?>
     <body>
+        <?php
+            if (isset($_GET['error']) && ($_GET['error'] == 1)){
+                echo '<p style="color: red;">'.$_GET['message'].'</p>';
+            }
+            else {
+                echo '<p class = "message_bienvenue">Bonjour & Bienvenue!</p>';
+
+            }
+        ?>
         <h1>Calcul de votre Chemin De Vie</h1>
         <section class="left_section">
             <div class="rules">
-                <ul>
+                <ol>
                     <li>Simplifiez votre saisie en utilisant les caractères en minuscule.</li>
                     <li>Précisez les voyelles accentuées: à-â-ä-é-è-ê-ë-ì-î-ï-ò-ô-ö-ù</li>
                     <li>Si besoin la cédille de la lettre ç avec la touche 9 du clavier alphabétique.</li>
                     <li>Indiquez vos pénoms dans le même ordre que votre fiche d'état civil.</li>
                     <li>Séparez tous vos pénoms par un espace.</li>
                     <li>Pour les prénoms composés, utilisez le tiret de la touche 6 du clavier alphabétique.</li>
-                </ul>
+                </ol>
             </div>
         </section>
         <section class="right_section">
