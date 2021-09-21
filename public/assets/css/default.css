@@ -1,0 +1,45 @@
+*, ::after, ::before {
+    box-sizing:         border-box;
+    padding:            0px;
+    margin:             0px;
+    
+}
+@font-face {
+    src:                url('./images/Botera-Regular.otf');
+    font-family:        'Botera';
+}
+:root {
+    --texte_police:     'Botera';
+    --texte_size:       1.2rem;
+    
+    --color_1:          #0f0f0f;
+    --color_2:          #f0f0f0d9;
+    --color_3:          #1dd1a1;
+    --color_4:          #8395a7;
+}
+
+html {
+    scroll-behavior:    smooth;
+    user-select:        none;
+    letter-spacing:     1px;
+    font-family:        var(--texte_police), Arial, Helvetica, sans-serif;
+    font-size:          var(--texte_size);
+    
+}
+body{
+    color:              var(--color_1);
+    background-color:   var(--color_4);
+
+    width:              100%;
+    padding:            1%;    
+
+}
+section, header {
+    width:              50%;
+    margin:             auto;
+    text-align:         center;
+}
+h1 {
+    color:              var(--color_3);
+    font-size:          1.5rem;
+}
