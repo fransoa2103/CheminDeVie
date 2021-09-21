@@ -6,6 +6,6 @@ function getUsersCDV() {
         catch(Exception $e) {
             die ('Erreur : '.$e->getMessage());
         }
-        $requestCDV = $database->query('SELECT * FROM cdv');
-        return $requestCDV;
+        $request = $database->query('SELECT * FROM cdv');
+        return $request;
     }
