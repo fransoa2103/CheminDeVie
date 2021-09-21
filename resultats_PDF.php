@@ -1,5 +1,6 @@
 <?php
     require 'C:\xampp\htdocs\CheminDeVie\components\controle_session.php';
+
 ?>
 
 <!DOCTYPE html>

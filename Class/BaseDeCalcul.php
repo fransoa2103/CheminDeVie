@@ -17,7 +17,7 @@
             ["quartz-rose","le ","Amour, douceur, paix, écoute, confiance et harmonie dans les relations.","Cette pierre apporte une énergie maternelle. Elle aide à pardonner, à apaiser la tristesse et favorise la confiance en sois.", "#C28381"],
             ["jasper-rouge","le ","Enracinement, encrage, réconfort, volonté, courage.","Énergie de la terre mère, elle rayonne d'une énergie vitale qui protège et purifie. Elle arrive en soutient pendant les périodes difficiles et prépare une éventuelle guérison. Elle aide le travaille au niveau de la prise de conscience.", "#7D1505"],
             ["calcedoine","la ","Pierre de communication, parole, expression, énergie douce.","Elle aide à ouvrir l'esprit. Provoque une flexibilité mentale et une aisance verbale. Elle aide à formuler ce qui vient du cœur, bienveillance, enthousiasme et générosité.","#4B47A9"],
-            ["jade","la ","Pierre d'équilibre, activité, repos, pureté, protection.","Aide à la communication et aux calme. Suscite la curiosité et la sérénité. Développe l'humilité, la justice, le courage et la sagesse.","#172618"],
+            ["jade","le ","Pierre d'équilibre, activité, repos, pureté, protection.","Aide à la communication et au calme. Suscite la curiosité et la sérénité. Développe l'humilité, la justice, le courage et la sagesse.","#172618"],
             ["emeraude","l'","Équilibre, harmonie, guérison, connaissance.","Favorise l'amour, le travail d'équipe, l'unité et l'amitié. Elle aide à trouver le sens des choses.Ouvre le cœur et calme les peurs et les émotions.","#023E32"],
             ["grenat","le ","Pierre d'ancrage, régénérante, ré-énergisante, résistance, force, volonté.","Rend actif. Active et renforce l'instinct de survie. Ancre le spirituel dans le corps. Elle travaille sur l'énergie vitale et est bonne pour le sang.","#562825"],
             ["citrine","la ","Joie, gaieté, énergie solaire, partage, confiance, générosité, motivation, créativité.","Enseigne comment attirer la richesse. Elle aide à avancer, vers le futur sans se fier au passé. Aide à surmonter dépression, peurs et phobies.","#CF9845"],
@@ -53,7 +53,7 @@
             ["Sommet", 0, "En seconde position, la pierre de Sommet représente nos réalisations spirituelles."],
             ["Vie", 0, "En troisième position, la pierre de Vie donne la piste à suivre pour passer de la base au sommet."],
             ["Appel", 0, "En quatrième position, la pierre d' Appel révèlent nos émotions profondes."],
-            ["Personnalite", 0, "En cinquième et dernière position, la pierre de Personnalité représente le mental, apaise votre esprit."],
+            ["Personnalite", 0, "En cinquième position, la pierre de Personnalité représente le mental, apaise votre esprit."],
             ["Expression", 0, "En sixième position, la pierre d'Expression symbolise la communication."],
             ["Touche", 0, "En septième position, la pierre de Touche vous ouvre toutes les portes, avec elle tout est possible."],
             ["Voeux", 0, "En huitième et dernière position, la pierre de Voeux représente la sensibilité intérieure, la fibre des aspirations et les vœux."]

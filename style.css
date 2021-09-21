@@ -84,7 +84,12 @@ input {
 /* ------------------------------------------------------------------------------------ */
 /* PAGE RESULTAT ECRAN */
 /* ------------------------------------------------------------------------------------ */
-
+div.menu_liens {
+    color: var(--color_2);
+}
+.menu_liens:link {
+    text-decoration: none;
+}
 .grid_resultat {
     display:                grid;
     grid-template-columns:  1fr;
@@ -113,7 +118,7 @@ section div.fond_couleur_pierre {
 section p.firstLetter::first-letter {
     display:                block;
     font-size:              4rem;
-    color:                  var(--color_1);
+    color:                  var(--color_2);
     padding:                10px 0px 0px 10px;
 }
 section img.image_position_pierre {

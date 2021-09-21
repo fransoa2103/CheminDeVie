@@ -27,7 +27,11 @@
                 echo '</p>et voici votre chemin de vie:'.'</p>';
             ?>
         </div>
-        <?php include 'components/lien_retour_index.php' ?>;
+        <div class="menu_liens">
+            <a href="http://localhost/CheminDeVie/index.php">Retour Accueil</a>
+            <a href="http://localhost/CheminDeVie/generateur_PDF.php">Générer PDF</a>
+        </div>        
+
         <?php
             $i = 0;
             foreach(BaseDeCalcul::$formules as $formule){
@@ -61,6 +65,5 @@
             $i++;
             }
         ?>
-        <a href="generateur_PDF.php">Générer votre chemin de vie au format PDF</a>;
     </body>
 </html>

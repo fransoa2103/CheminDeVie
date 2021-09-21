@@ -19,7 +19,7 @@
                     <li>Précisez les voyelles accentuées: à-â-ä-é-è-ê-ë-ì-î-ï-ò-ô-ö-ù</li>
                     <li>Si besoin la cédille de la lettre ç avec la touche 9 du clavier alphabétique.</li>
                     <li>Indiquez vos pénoms dans le même ordre que votre fiche d'état civil.</li>
-                    <li>Séparez tous vos pénoms par un espace.</li>
+                    <li>Séparez tous vos prénoms par un espace.</li>
                     <li>Pour les prénoms composés, utilisez le tiret de la touche 6 du clavier alphabétique.</li>
                 </ol>
             </div>

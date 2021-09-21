@@ -5,7 +5,7 @@
         exit();
     }
     else {
-    if ($_POST['prenoms'] =="" || $_POST['nomPere'] =="" || $_POST['nomMere'] ==""){
+    if (empty($_POST['prenoms']) || empty($_POST['nomPere']) || empty($_POST['nomMere'])){
             header('location:http://localhost/CheminDeVie/index.php?error=1&message=Attention, Un ou plusieurs champs sont vides !');
             exit();
         }
