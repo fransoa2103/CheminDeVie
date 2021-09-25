@@ -8,7 +8,6 @@
             }
             else {
                 echo '<p class = "message_bienvenue">Bonjour & Bienvenue!</p>';
-
             }
         ?>
         <h1>Calcul de votre Chemin De Vie</h1>
@@ -16,7 +15,7 @@
             <div class="rules">
                 <ol>
                     <li>Simplifiez votre saisie en utilisant les caractères en minuscule.</li>
-                    <li>Précisez les voyelles accentuées: à-â-ä-é-è-ê-ë-ì-î-ï-ò-ô-ö-ù</li>
+                    <li>Précisez les voyelles accentuées:</br>à-â-ä-é-è-ê-ë-ì-î-ï-ò-ô-ö-ù</li>
                     <li>Si besoin la cédille de la lettre ç avec la touche 9 du clavier alphabétique.</li>
                     <li>Indiquez vos pénoms dans le même ordre que votre fiche d'état civil.</li>
                     <li>Séparez tous vos prénoms par un espace.</li>
@@ -30,7 +29,7 @@
                     <input class="precision" required type="text" name="prenoms" id="prenoms" placeholder="ex: Jean-Pierre François émile"></br></br>
                 </label>
 
-                <label for="nomPere"><b>Nom de naissance de votre père</b></br>
+                <label for="nomPere"><b>Nom de votre père</b></br>
                     <input required type="text" name="nomPere" id="nomPere" placeholder="Nom de votre père"></br></br>
                 </label>
                 
@@ -46,5 +45,5 @@
             </form>    
         </section>
         <script src="index.js"></script>
-</body>
+    </body>
 </html>

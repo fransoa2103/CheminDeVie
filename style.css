@@ -85,10 +85,27 @@ input {
 /* PAGE RESULTAT ECRAN */
 /* ------------------------------------------------------------------------------------ */
 div.menu_liens {
-    color: var(--color_2);
+    width: 100%;
+    margin-bottom: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.menu_liens:link {
+div.menu_liens a {
+    background-color: var(--color_3);
+    color: var(--color_1);
+    padding: 1%;
+    margin: 0 1% 0 0;
     text-decoration: none;
+    opacity: 75%;
+}
+div.menu_liens a:nth-child(1) {
+}
+
+div.menu_liens a:hover {
+    color: var(--color_2);
+    opacity: 100%;
+
 }
 .grid_resultat {
     display:                grid;
@@ -163,7 +180,9 @@ section div > p:nth-child(3) {
         width:                  80%;
         margin:                 0 auto;
     }
-
+    div.menu_liens {
+        margin-bottom: 1%;
+    }
     .left_section {
         width: 40%;
         border: none;

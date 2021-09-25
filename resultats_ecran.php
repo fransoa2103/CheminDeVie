@@ -28,13 +28,14 @@
             ?>
         </div>
         <div class="menu_liens">
-            <a href="http://localhost/CheminDeVie/index.php">Retour Accueil</a>
-            <a href="http://localhost/CheminDeVie/generateur_PDF.php">Générer PDF</a>
+            <a href="http://localhost/CheminDeVie/index.php">Retour à l'accueil</a>
+            <a href="http://localhost/CheminDeVie/generateur_PDF.php">Impression format PDF</a>
         </div>        
 
         <?php
-            $i = 0;
+            $i = -1;
             foreach(BaseDeCalcul::$formules as $formule){
+                $i++;
                 $_SESSION['user']['nom_formule'.$i]         = $formule[0];
                 $_SESSION['user']['resultat_formule'.$i]    = $formule[1];
                 $_SESSION['user']['definition_formule'.$i]  = $formule[2];
@@ -62,7 +63,6 @@
                         break;
                     }
                 }
-            $i++;
             }
         ?>
     </body>
