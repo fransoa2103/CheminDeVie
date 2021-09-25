@@ -3,28 +3,22 @@
 require ('controller/controller.php');
 
 try{
-    if(isset($_GET['page']))
-    {
-        if ($_GET['page'] == 'home')
-        {
+    if(isset($_GET['page'])){
+        if ($_GET['page'] == 'home'){
             home();
         }
-        else if ($_GET['page'] == 'cdv')
-        {
+        else if ($_GET['page'] == 'cdv'){
             cdv();
         }
-        else
-        {
+        else {
             throw new Exception('cette page n\'existe pas! ');
         }
     }
-    else
-    {
+    else {
         home();
     }
 }
 catch(Exception $e){
-    // die('Erreur: '.$e->getMessage());
     $error =$e->getMessage();
     require('view/error_view.php');
 }

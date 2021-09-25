@@ -1,14 +1,16 @@
 <?php
     
-require('model/listUsers_connect.php');
-require('model/pathLife_connect.php');
+require_once('model/ListUsers_manager.php');
+require_once('model/PathLife_manager.php');
 
 function home(){
-    $request = getUsers();
+    $userManager = new UsersManager();
+    $request = $userManager->getUsers();
     require('view/listUsers_view.php');
 }
 function cdv(){
-    $request = getUsersCDV();
+    $userManager = new UsersCDV();
+    $request = $userManager->getUsersCDV();
     require('view/pathLife_view.php');
 }
 
