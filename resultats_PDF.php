@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <?php include 'components/html_head.php'; ?>
-    <style><?php include 'C:\xampp\htdocs\CheminDeVie\style_PDF.css' ?></style>
+    <style><?php include './CheminDeVie/style_PDF.css' ?></style>
     <body>
 
         <!------------------------>

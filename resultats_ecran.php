@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'C:\xampp\htdocs\CheminDeVie\components\controle_session.php';
+    require_once '../CheminDeVie/components/controle_session.php';
 
     session_start();
     spl_autoload_register(function($class){
@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-    <?php include ('components/html_head.php'); ?>
+    <?php include ('./components/html_head.php'); ?>
     <body>
         <h1>Chemin De Vie</h1>
         <div class="entete">
@@ -28,8 +28,8 @@
             ?>
         </div>
         <div class="menu_liens">
-            <a href="http://localhost/CheminDeVie/index.php">Retour à l'accueil</a>
-            <a href="http://localhost/CheminDeVie/generateur_PDF.php">Impression format PDF</a>
+            <a href="index.php">Retour à l'accueil</a>
+            <a href="generateur_PDF.php">Impression format PDF</a>
         </div>        
 
         <?php
