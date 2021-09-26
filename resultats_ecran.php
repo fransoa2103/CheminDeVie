@@ -6,8 +6,8 @@
     // spl_autoload_register(function($class){
     //     require_once('./Class/'.$class.'.php');
     // });
-    include './Class/BaseDeCalcul.php';
-    include './Class/Bracelet.php';
+    include ('./Class/BaseDeCalcul.php');
+    include ('./Class/Bracelet.php');
     
     $bracelet = new Bracelet($_POST);
     $_SESSION['user'] = [
