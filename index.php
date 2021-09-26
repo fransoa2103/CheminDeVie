@@ -24,7 +24,7 @@
             </div>
         </section>
         <section class="right_section">
-            <form id="userNew" action="xresultats_ecran.php" method="POST">
+            <form id="userNew" action="resultats_ecran.php" method="POST">
                 <label for="prenoms"><b>Vos prénoms</b><br>
                     <input class="precision" required type="text" name="prenoms" id="prenoms" placeholder="ex: Jean-Pierre François émile"></br></br>
                 </label>
