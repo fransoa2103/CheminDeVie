@@ -3,9 +3,12 @@
     // require_once './components/controle_session.php';
 
     session_start();
-    spl_autoload_register(function($class){
-        require_once('./Class/'.$class.'.php');
-    });
+    // spl_autoload_register(function($class){
+    //     require_once('./Class/'.$class.'.php');
+    // });
+    require_once './Class/BaseDeCalcul.php';
+    require_once './Class/Bracelet.php';
+    
     $bracelet = new Bracelet($_POST);
     $_SESSION['user'] = [
         'prenoms' => mb_strtolower($bracelet->prenoms),
