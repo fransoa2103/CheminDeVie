@@ -6,16 +6,16 @@
     // spl_autoload_register(function($class){
     //     require_once('./Class/'.$class.'.php');
     // });
-    // require_once './Class/BaseDeCalcul.php';
-    // require_once './Class/Bracelet.php';
+    require './Class/BaseDeCalcul.php';
+    require './Class/Bracelet.php';
     
-    // $bracelet = new Bracelet($_POST);
-    // $_SESSION['user'] = [
-    //     'prenoms' => mb_strtolower($bracelet->prenoms),
-    //     'nomPere' => mb_strtolower($bracelet->nomPere),
-    //     'nomMere' => mb_strtolower($bracelet->nomMere),
-    //     'birthday' => $bracelet->dateNaissance[2].'/'.$bracelet->dateNaissance[1].'/'.$bracelet->dateNaissance[0]
-    // ];
+    $bracelet = new Bracelet($_POST);
+    $_SESSION['user'] = [
+        'prenoms' => mb_strtolower($bracelet->prenoms),
+        'nomPere' => mb_strtolower($bracelet->nomPere),
+        'nomMere' => mb_strtolower($bracelet->nomMere),
+        'birthday' => $bracelet->dateNaissance[2].'/'.$bracelet->dateNaissance[1].'/'.$bracelet->dateNaissance[0]
+    ];
 ?>
 
 <!DOCTYPE html>
