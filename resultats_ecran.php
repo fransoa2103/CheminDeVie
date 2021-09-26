@@ -1,6 +1,6 @@
 <?php
 
-    require_once './components/controle_session.php';
+    // require_once './components/controle_session.php';
 
     session_start();
     spl_autoload_register(function($class){
@@ -17,19 +17,18 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-    <?php include ('./components/html_head.php'); ?>
+    <?php include './components/html_head.php'; ?>
     <body>
         <h1>Chemin De Vie</h1>
         <div class="entete">
-            </p>Bonjour <?=$_SESSION['user']['prenoms'].' / '.$_SESSION['user']['nomPere'].' / '.$_SESSION['user']['nomMere']?></p>
-            </p>Vous êtes né(e) le <?=$_SESSION['user']['birthday']?></p>
-            </p>et voici votre chemin de vie:</p>
+            <p>Bonjour <?=$_SESSION['user']['prenoms'].' / '.$_SESSION['user']['nomPere'].' / '.$_SESSION['user']['nomMere']?></p>
+            <p>'Votre date de naissance est le <?=$_SESSION['user']['birthday']?></p>
+            <p>et voici votre chemin de vie.</p>
         </div>
         <div class="menu_liens">
             <a href="index.php">Retour à l'accueil</a>
             <a href="generateur_PDF.php">Impression format PDF</a>
         </div>        
-
         <?php
             $i = 0;
             foreach(BaseDeCalcul::$formules as $formule){
