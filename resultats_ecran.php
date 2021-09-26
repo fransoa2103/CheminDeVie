@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../CheminDeVie/components/controle_session.php';
+    require_once './components/controle_session.php';
 
     session_start();
     spl_autoload_register(function($class){
@@ -21,11 +21,9 @@
     <body>
         <h1>Chemin De Vie</h1>
         <div class="entete">
-            <?php
-                echo '</p>Bonjour '.$_SESSION['user']['prenoms'].' / '.$_SESSION['user']['nomPere'].' / '.$_SESSION['user']['nomMere'].'</p>';
-                echo '</p>Vous êtes né(e) le '.$_SESSION['user']['birthday'].'</p>';
-                echo '</p>et voici votre chemin de vie:'.'</p>';
-            ?>
+            </p>Bonjour <?=$_SESSION['user']['prenoms'].' / '.$_SESSION['user']['nomPere'].' / '.$_SESSION['user']['nomMere']?></p>
+            </p>Vous êtes né(e) le <?=$_SESSION['user']['birthday']?></p>
+            </p>et voici votre chemin de vie:</p>
         </div>
         <div class="menu_liens">
             <a href="index.php">Retour à l'accueil</a>
@@ -33,9 +31,8 @@
         </div>        
 
         <?php
-            $i = -1;
+            $i = 0;
             foreach(BaseDeCalcul::$formules as $formule){
-                $i++;
                 $_SESSION['user']['nom_formule'.$i]         = $formule[0];
                 $_SESSION['user']['resultat_formule'.$i]    = $formule[1];
                 $_SESSION['user']['definition_formule'.$i]  = $formule[2];
@@ -47,22 +44,23 @@
                         $_SESSION['user']['definition_1_pierre'.$i] = $pierre[2];
                         $_SESSION['user']['definition_2_pierre'.$i] = $pierre[3];
                         $_SESSION['user']['couleur'.$i]             = $pierre[4];
-
-                        echo
-                        '<section class="grid_resultat">'.
-                            '<div class = "fond_couleur_pierre" style="background-color:'.$_SESSION['user']['couleur'.$i].'">'.
-                                '<p class = "firstLetter">'.($i+1).'</p>'.
-                                '<img class = "image_position_pierre" src = "./images/'.$_SESSION['user']['nom_pierre'.$i].'.png" alt = "" >'.
-                            '</div>'.
-                            '<div>'.
-                                '<p>'.$_SESSION['user']['definition_formule'.$i].'</p>'.
-                                '<p>Votre pierre de '.$_SESSION['user']['nom_formule'.$i].' est '.$_SESSION['user']['article_pierre'.$i].$_SESSION['user']['nom_pierre'.$i].'.</p>'.
-                                '<p>'.$_SESSION['user']['definition_1_pierre'.$i].' '.$_SESSION['user']['definition_2_pierre'.$i].'</p>'.
-                            '</div>'.
-                        '</section>';
+                        ?>
+                        <section class="grid_resultat">
+                            <div class = "fond_couleur_pierre" style="background-color:<?=$_SESSION['user']['couleur'.$i]?>">
+                                <p class = "firstLetter"><?=($i+1)?></p>
+                                <img class = "image_position_pierre" src = "./images/<?=$_SESSION['user']['nom_pierre'.$i]?>.png" alt = "">
+                            </div>
+                            <div>
+                                <p><?=$_SESSION['user']['definition_formule'.$i]?></p>
+                                <p>Votre pierre de <?=$_SESSION['user']['nom_formule'.$i].' est '.$_SESSION['user']['article_pierre'.$i].$_SESSION['user']['nom_pierre'.$i]?></p>
+                                <p><?=$_SESSION['user']['definition_1_pierre'.$i].' '.$_SESSION['user']['definition_2_pierre'.$i]?></p>
+                            </div>
+                        </section>
+                        <?php
                         break;
                     }
                 }
+                $i++;
             }
         ?>
     </body>
