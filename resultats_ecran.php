@@ -27,7 +27,6 @@
         </div>
         <div class="menu_liens">
             <a href="index.php">Retour à l'accueil</a>
-            <a href="generateur_PDF.php">Impression format PDF</a>
         </div>        
         <?php
             $i = 0;
