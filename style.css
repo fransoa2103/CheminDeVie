@@ -99,8 +99,6 @@ div.menu_liens a {
     text-decoration: none;
     opacity: 75%;
 }
-div.menu_liens a:nth-child(1) {
-}
 
 div.menu_liens a:hover {
     color: var(--color_2);
